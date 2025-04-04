@@ -46,7 +46,7 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
+  let message = "Error";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
 
@@ -62,11 +62,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <main className="p-4 container mx-auto">
+      <h1 className="text-2xl font-bold">{message}</h1>
+      <p className="mt-2">{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className="w-full mt-4 p-4 overflow-x-auto bg-gray-100 dark:bg-gray-800 rounded">
           <code>{stack}</code>
         </pre>
       )}

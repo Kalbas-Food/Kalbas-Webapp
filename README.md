@@ -1,3 +1,54 @@
+# Kalbas Web Application
+
+A modern web application built with React Router.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm (v8 or higher)
+
+### Installation
+
+1. Clone the repository:
+```sh
+git clone [repository-url]
+cd kalbas-webapp
+```
+
+2. Install dependencies:
+```sh
+npm install
+```
+
+3. Start the development server:
+```sh
+npm run dev
+```
+
+The application will be available at http://localhost:3000.
+
+## Available Scripts
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build the application for production
+- `npm run start` - Start the production server
+
+## Folder Structure
+
+- `app/` - Application source files
+  - `routes/` - Application routes
+  - `welcome/` - Welcome components
+- `public/` - Static assets
+
+## Technologies
+
+- React Router
+- TypeScript
+- Tailwind CSS
+- Vite
+
 # Welcome to React Router!
 
 A modern, production-ready template for building full-stack React applications using React Router.
@@ -13,26 +64,6 @@ A modern, production-ready template for building full-stack React applications u
 - 🔒 TypeScript by default
 - 🎉 TailwindCSS for styling
 - 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
-
-Install the dependencies:
-
-```bash
-npm install
-```
-
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
 
 ## Building for Production
 

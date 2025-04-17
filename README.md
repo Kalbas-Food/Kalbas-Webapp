@@ -1,6 +1,8 @@
-# Kalbas Web Application
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/88f8c28c-408e-48e5-ae73-8a063fbbf491" alt="Kalbas Logo" width="200"/>
+</p>
 
-A modern web application built with React Router.
+<h1 align="center">Kalbas Web Application</h1>
 
 ## Getting Started
 

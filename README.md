@@ -4,117 +4,92 @@
 
 <h1 align="center">Kalbas Web Application</h1>
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v18 or higher)
-- npm (v8 or higher)
-
-### Installation
-
-1. Clone the repository:
-```sh
-git clone [repository-url]
-cd kalbas-webapp
-```
-
-2. Install dependencies:
-```sh
-npm install
-```
-
-3. Start the development server:
-```sh
-npm run dev
-```
-
-The application will be available at http://localhost:3000.
-
-## Available Scripts
-
-- `npm run dev` - Start the development server
-- `npm run build` - Build the application for production
-- `npm run start` - Start the production server
-
-## Folder Structure
-
-- `app/` - Application source files
-  - `routes/` - Application routes
-  - `welcome/` - Welcome components
-- `public/` - Static assets
-
-## Technologies
-
-- React Router
-- TypeScript
-- Tailwind CSS
-- Vite
-
-# Welcome to React Router!
-
-A modern, production-ready template for building full-stack React applications using React Router.
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
-
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+> A modern, user-friendly web application built with React, TypeScript, Tailwind CSS, and powered by Vite. Designed for optimal performance and an engaging user experience.
 
 ---
 
-Built with ❤️ using React Router.
+## Table of Contents
+
+- [Installation](#installation)
+- [Available Scripts](#available-scripts)
+- [Technologies](#technologies)
+- [Features](#features)
+- [Styling](#styling)
+- [License](#license)
+
+---
+
+## Installation
+
+Follow these steps to get your development environment set up:
+
+1. Clone the repository to your local machine:
+
+   ```bash
+   git clone https://github.com/yourusername/kalbas.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd kalbas
+   ```
+
+3. Install the required dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Visit `http://localhost:3000` in your browser to view the app.
+
+---
+
+## Available Scripts
+
+In the project directory, you can run the following commands:
+
+- `npm run dev` – Start the development server for local development with hot module replacement (HMR).
+- `npm run build` – Build the application for production, optimizing assets and code splitting.
+- `npm run start` – Start the production server with the built application for deployment.
+
+---
+
+## Technologies
+
+The project uses the following technologies:
+
+- **React** – A JavaScript library for building user interfaces, providing a component-based structure.
+- **TypeScript** – A statically typed superset of JavaScript that enhances code quality and maintainability.
+- **Tailwind CSS** – A utility-first CSS framework for creating custom designs directly in your markup.
+- **Vite** – A next-generation, fast build tool and development server.
+
+---
+
+## Features
+
+- 🚀 **Server-Side Rendering (SSR)** – For fast initial loading and better SEO.
+- ⚡️ **Hot Module Replacement (HMR)** – Instant live reloading of changes during development.
+- 📦 **Optimized Asset Bundling** – Code-splitting and optimization for faster load times.
+- 🔄 **Data Loading and Mutations** – Handles data flow and mutations efficiently.
+- 🔒 **TypeScript Integration** – Type safety and better tooling out of the box.
+- 🎨 **Tailwind CSS for Styling** – Responsive, customizable design with minimal effort.
+- 📖 **React Router** – For easy and declarative routing in React applications.
+
+---
+
+## Styling
+
+This project uses [Tailwind CSS](https://tailwindcss.com/) to style the application. It comes pre-configured, making it easy to get started with responsive designs. You can customize the configuration or switch to other CSS frameworks if desired.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.

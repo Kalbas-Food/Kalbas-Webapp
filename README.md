@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/88f8c28c-408e-48e5-ae73-8a063fbbf491" alt="Kalbas Logo" width="200"/>
+  <img src="https://github.com/user-attachments/assets/2b8bef6c-a301-490d-8b58-0c1e370ffd7b" alt="Kalbas Logo" width="200"/>
 </p>
 
 <h1 align="center">Kalbas Web Application</h1>

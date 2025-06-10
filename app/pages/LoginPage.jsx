@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Typography, Divider } from '@mui/material';
 import SketchyButton from '../components/ui/SketchyButton';
-import SketchyTextField from '../components/ui/SketchyTextField';
-import SketchyFilter from '../components/ui/SketchyFilter';
+import SketchyTextField from '../components/ui/SketchyTextField.js';
+import SketchyFilter from '../components/ui/SketchyFilter.js';
 import Logo from '../assets/logo.svg';
 import GoogleIcon from '../assets/google-icon.svg';
 

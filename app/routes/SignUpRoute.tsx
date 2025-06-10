@@ -6,7 +6,7 @@ import SketchyFilter from '../components/ui/SketchyFilter';
 import Logo from '../assets/logo.svg';
 import GoogleIcon from '../assets/google-icon.svg';
 
-const LoginRoute= () => {
+const SignUpRoute= () => {
     return (
         <Box
             sx={{
@@ -77,4 +77,4 @@ const LoginRoute= () => {
     );
 };
 
-export default LoginRoute;
+export default SignUpRoute;

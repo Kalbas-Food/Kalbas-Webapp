@@ -16,9 +16,23 @@ const Header: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '1rem 2rem',
-        borderBottom: '2px solid black', // Example sketchy border
-        backgroundColor: 'transparent', // Changed to transparent
+        position: 'relative',
+        backgroundColor: 'transparent',
         width: '100%',
+        zIndex: 1, // Ensure header is above other content
+
+        // Sketchy bottom border
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          height: '1px',
+          backgroundColor: 'black',
+          filter: 'url(#sketchy-filter)',
+          boxShadow: '0px 2px 0px black',
+        },
       }}
     >
       {/* Left section: Logo and Address */}
@@ -27,7 +41,7 @@ const Header: React.FC = () => {
           component="img"
           src={Logo}
           alt="Kalbas Logo"
-          sx={{ width: 65, height: 65}} // Increased size
+          sx={{ width: 65, height: 65}}
         />
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.25rem', direction: 'ltr' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

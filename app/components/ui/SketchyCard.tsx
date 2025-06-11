@@ -26,6 +26,11 @@ const StyledCard = styled(ButtonBase)(({ theme }) => ({
   width: '150px', // Fixed width for demonstration
   height: '150px', // Fixed height for demonstration
 
+  // disable ripple effect
+  '& .MuiTouchRipple-root': {
+    display: 'none',
+  },
+
   '&::before': {
     content: '""',
     position: 'absolute',

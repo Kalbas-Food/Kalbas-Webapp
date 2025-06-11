@@ -30,7 +30,7 @@ const Header: React.FC = () => {
           bottom: 0,
           left: 0,
           width: '100%',
-          height: '2px',
+          height: '1px',
           backgroundColor: 'black',
           filter: 'url(#sketchy-filter)',
           boxShadow: '0px 2px 0px black',

@@ -4,9 +4,9 @@ import SketchyTextField from './ui/SketchyTextField';
 import SketchyButton from './ui/SketchyButton';
 import SketchyIconButton from './ui/SketchyIconButton';
 import Logo from '../assets/logo.svg';
-import cartImage from '../assets/cart.png';
-import profileImage from '../assets/profile.png';
-import pinImage from '../assets/pin.png';
+import cartImage from '../assets/img/icons/cart.png';
+import profileImage from '../assets/img/icons/profile.png';
+import pinImage from '../assets/img/icons/pin.png';
 
 const Header: React.FC = () => {
   return (

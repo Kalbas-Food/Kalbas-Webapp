@@ -24,7 +24,7 @@ const SignUpRoute: React.FC = () => {
                 component="img"
                 src={Logo}
                 alt="Logo"
-                sx={{width: 150, height: 150, marginBottom: '2rem'}}
+                sx={{width: 100, height: 100, marginBottom: '2rem'}}
             />
 
             <Box sx={{width: '100%', maxWidth: '400px'}}>

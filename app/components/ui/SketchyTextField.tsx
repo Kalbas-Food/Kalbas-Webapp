@@ -15,23 +15,23 @@ const SketchyTextField = styled(TextField)({
       inset: 0,
       zIndex: -1,
       borderRadius: '12px',
-      border: '3px solid black',
+      border: '2px solid black',
       backgroundColor: 'white',
       filter: 'url(#sketchy-filter)',
-      boxShadow: '2px 2px 0px 1px rgba(0,0,0,1)',
+      boxShadow: '1px 1px 0px 1px rgba(0,0,0,1)',
       transition: 'transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out, border-color 0.1s ease-in-out',
     },
 
     '&:hover:not(.Mui-focused)': {
       '&::before': {
-        boxShadow: '3px 3px 0px 1px rgba(0,0,0,1)',
+        boxShadow: '2px 2px 0px 1px rgba(0,0,0,1)',
       },
     },
 
     '&.Mui-focused': {
       '&::before': {
         transform: 'translateY(-2px)',
-        boxShadow: '4px 4px 0px 1px rgba(0,0,0,1)',
+        boxShadow: '3px 3px 0px 1px rgba(0,0,0,1)',
         borderColor: '#3d84f5',
       },
     },

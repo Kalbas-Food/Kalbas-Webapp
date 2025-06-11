@@ -21,10 +21,10 @@ const SketchyButton = styled(Button)(({ theme, variant }) => ({
         content: '""',
         position: 'absolute',
         inset: 0,
-        border: '3px solid black',
+        border: '2px solid black',
         borderRadius: '15px 50px 10px 40px / 40px 10px 50px 15px',
         backgroundColor: variant === 'contained' ? '#3d84f5' : 'white',
-        boxShadow: '2px 2px 0px 1px rgba(0,0,0,1)',
+        boxShadow: '1px 1px 0px 1px rgba(0,0,0,1)',
         transition: 'box-shadow 0.1s ease-in-out',
         filter: 'url(#sketchy-filter)',
         zIndex: -1,
@@ -35,14 +35,14 @@ const SketchyButton = styled(Button)(({ theme, variant }) => ({
         transform: 'translateY(-2px)',
         boxShadow: 'none',
         '&::before': {
-            boxShadow: '4px 4px 0px 1px rgba(0,0,0,1)',
+            boxShadow: '3px 3px 0px 1px rgba(0,0,0,1)',
         },
     },
 
     '&:active': {
         transform: 'translateY(1px)',
         '&::before': {
-            boxShadow: '2px 2px 0px 1px rgba(0,0,0,1)',
+            boxShadow: '1px 1px 0px 1px rgba(0,0,0,1)',
         },
     },
 }));

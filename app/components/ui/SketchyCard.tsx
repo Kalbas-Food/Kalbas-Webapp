@@ -29,7 +29,7 @@ const StyledCardContent = styled(ButtonBase)(({ theme }) => ({
 
 const SketchyCard: React.FC<SketchyCardProps> = ({ image, categoryName, onClick }) => {
   return (
-    <SketchyContainer component={ButtonBase} onClick={onClick} sx={{ width: '150px', height: '150px' }}>
+    <SketchyContainer component={ButtonBase} disableRipple={true} onClick={onClick} sx={{ width: '150px', height: '150px' }}>
       <StyledCardContent>
         <Box
           component="img"

@@ -1,29 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
-import SketchyTextField from './ui/SketchyTextField';
-import SketchyButton from './ui/SketchyButton';
+import { styled } from '@mui/material/styles';
 import SketchyIconButton from './ui/SketchyIconButton';
-import Logo from '../assets/logo.svg';
-import cartImage from '../assets/img/icons/cart.png';
-import profileImage from '../assets/img/icons/profile.png';
-import pinImage from '../assets/img/icons/pin.png';
+import cartIcon from '../assets/img/icons/cart.png';
+import profileIcon from '../assets/img/icons/profile.png';
+import pinIcon from '../assets/img/icons/pin.png';
+import logo from '../assets/logo.svg';
+import SketchyTextField from './ui/SketchyTextField';
 
 const Header: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setIsVisible(false);
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
     <Box
       sx={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+        backgroundColor: 'white',
+        transition: 'transform 0.3s ease-in-out', // Smooth animation for slide in/out
+        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)', // Apply slide animation
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: { xs: '0.5rem 1rem', md: '1rem 2rem' },
-        position: 'relative',
-        backgroundColor: 'transparent',
         width: '100%',
-        zIndex: 1,
         flexWrap: 'wrap',
         gap: { xs: '1rem', md: '1.5rem' },
 
-        // Sketchy bottom border
         '&::after': {
           content: '""',
           position: 'absolute',
@@ -41,7 +65,7 @@ const Header: React.FC = () => {
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
         <Box
           component="img"
-          src={Logo}
+          src={logo}
           alt="Kalbas Logo"
           sx={{ width: { xs: 50, md: 65 }, height: { xs: 50, md: 65 } }}
         />
@@ -49,7 +73,7 @@ const Header: React.FC = () => {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Box
               component="img"
-              src={pinImage}
+              src={pinIcon}
               alt="Location Pin"
               sx={{ width: 24, height: 24 }}
             />
@@ -78,7 +102,7 @@ const Header: React.FC = () => {
         <SketchyIconButton>
           <Box
             component="img"
-            src={cartImage}
+            src={cartIcon}
             alt="Orders"
             sx={{ width: 30, height: 30 }}
           />
@@ -86,7 +110,7 @@ const Header: React.FC = () => {
         <SketchyIconButton>
           <Box
             component="img"
-            src={profileImage}
+            src={profileIcon}
             alt="Profile"
             sx={{ width: 30, height: 30 }}
           />

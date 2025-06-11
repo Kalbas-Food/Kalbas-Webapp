@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import SketchyFilter from '../components/ui/SketchyFilter';
 import SketchyCard from '../components/ui/SketchyCard';
 import SketchyRestaurantCard from '../components/ui/SketchyRestaurantCard';
+import { Box } from '@mui/material';
 
 // Import category images
 import iranianImage from '../assets/img/categories/iranian-food.png';
@@ -146,6 +147,7 @@ const HomeRoute: React.FC = () => {
         <div>
             <SketchyFilter />
             <Header />
+            <Box sx={{ height: '1px', backgroundColor: 'black', filter: 'url(#sketchy-filter)' }} />
             <div className="container mx-auto px-4 py-8">
                 <h2 className="text-2xl font-bold mb-4">Explore Categories</h2>
                 <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

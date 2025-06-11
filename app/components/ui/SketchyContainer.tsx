@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 
 interface SketchyContainerProps extends BoxProps {
   disableActiveTransform?: boolean; // New prop to disable active transform
+  disableRipple?: boolean; // Add disableRipple prop
 }
 
 const StyledSketchyBox = styled(Box)<{ disableActiveTransform?: boolean }>(({ theme, disableActiveTransform }) => ({

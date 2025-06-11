@@ -15,11 +15,13 @@ const Header: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '1rem 2rem',
+        padding: { xs: '0.5rem 1rem', md: '1rem 2rem' },
         position: 'relative',
         backgroundColor: 'transparent',
         width: '100%',
-        zIndex: 1, // Ensure header is above other content
+        zIndex: 1,
+        flexWrap: 'wrap',
+        gap: { xs: '1rem', md: '1.5rem' },
 
         // Sketchy bottom border
         '&::after': {
@@ -28,7 +30,7 @@ const Header: React.FC = () => {
           bottom: 0,
           left: 0,
           width: '100%',
-          height: '1px',
+          height: '2px',
           backgroundColor: 'black',
           filter: 'url(#sketchy-filter)',
           boxShadow: '0px 2px 0px black',
@@ -41,7 +43,7 @@ const Header: React.FC = () => {
           component="img"
           src={Logo}
           alt="Kalbas Logo"
-          sx={{ width: 65, height: 65}}
+          sx={{ width: { xs: 50, md: 65 }, height: { xs: 50, md: 65 } }}
         />
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.25rem', direction: 'ltr' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -62,7 +64,7 @@ const Header: React.FC = () => {
       </Box>
 
       {/* Middle section: Search Bar */}
-      <Box sx={{ flexGrow: 1, mx: '2rem', maxWidth: '500px' }}>
+      <Box sx={{ flexGrow: 1, mx: { xs: '0.5rem', md: '2rem' }, maxWidth: { xs: '100%', md: '500px' } }}>
         <SketchyTextField
           fullWidth
           placeholder="Search in Kalbas"
@@ -94,4 +96,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header; 
+export default Header;

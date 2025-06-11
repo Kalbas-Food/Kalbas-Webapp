@@ -5,6 +5,7 @@ import SketchyTextField from '../components/ui/SketchyTextField';
 import SketchyFilter from '../components/ui/SketchyFilter';
 import Logo from '../assets/logo.svg';
 import GoogleIcon from '../assets/google-icon.svg';
+import { Link } from 'react-router';
 
 const LoginRoute= () => {
     return (
@@ -71,7 +72,8 @@ const LoginRoute= () => {
             </SketchyButton>
 
             <Typography>
-                Don't have an account? <a href="#" style={{color: '#3d84f5', fontWeight: 'bold'}}>Sign up</a>
+                Don't have an account? 
+                <Link to="/auth/signup" replace={true} style={{color: '#3d84f5', fontWeight: 'bold'}}>Sign up</Link>
             </Typography>
         </Box>
     );

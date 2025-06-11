@@ -5,6 +5,7 @@ import SketchyTextField from '../components/ui/SketchyTextField';
 import SketchyFilter from '../components/ui/SketchyFilter';
 import Logo from '../assets/logo.svg';
 import GoogleIcon from '../assets/google-icon.svg';
+import { Link, NavLink } from 'react-router';
 
 const SignUpRoute= () => {
     return (
@@ -46,7 +47,7 @@ const SignUpRoute= () => {
                     size="large"
                     sx={{padding: '0.8rem', fontSize: '1.5rem', marginBottom: '1.5rem'}}
                 >
-                    LOGIN
+                    SIGN UP
                 </SketchyButton>
             </Box>
 
@@ -71,7 +72,8 @@ const SignUpRoute= () => {
             </SketchyButton>
 
             <Typography>
-                Don't have an account? <a href="#" style={{color: '#3d84f5', fontWeight: 'bold'}}>Sign up</a>
+                Already have an account?
+                <Link to="/auth/login" style={{color: '#3d84f5', fontWeight: 'bold'}}>Log in</Link>
             </Typography>
         </Box>
     );

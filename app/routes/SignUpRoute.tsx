@@ -5,9 +5,9 @@ import SketchyTextField from '../components/ui/SketchyTextField';
 import SketchyFilter from '../components/ui/SketchyFilter';
 import Logo from '../assets/logo.svg';
 import GoogleIcon from '../assets/google-icon.svg';
-import { Link, NavLink } from 'react-router';
+import { Link } from 'react-router';
 
-const SignUpRoute= () => {
+const SignUpRoute: React.FC = () => {
     return (
         <Box
             sx={{
@@ -30,13 +30,27 @@ const SignUpRoute= () => {
             <Box sx={{width: '100%', maxWidth: '400px'}}>
                 <SketchyTextField
                     fullWidth
-                    placeholder="MahdiHaeri"
+                    placeholder="Full Name"
                     variant="outlined"
                     sx={{marginBottom: '1.5rem'}}
                 />
                 <SketchyTextField
                     fullWidth
-                    placeholder="••••••••"
+                    placeholder="Email Address"
+                    type="email"
+                    variant="outlined"
+                    sx={{marginBottom: '1.5rem'}}
+                />
+                <SketchyTextField
+                    fullWidth
+                    placeholder="Password"
+                    type="password"
+                    variant="outlined"
+                    sx={{marginBottom: '1.5rem'}}
+                />
+                <SketchyTextField
+                    fullWidth
+                    placeholder="Confirm Password"
                     type="password"
                     variant="outlined"
                     sx={{marginBottom: '1.5rem'}}
@@ -68,11 +82,11 @@ const SignUpRoute= () => {
                     backgroundColor: 'white'
                 }}
             >
-                Log in with Google
+                Sign up with Google
             </SketchyButton>
 
             <Typography>
-                Already have an account?
+                Already have an account?{' '}
                 <Link to="/auth/login" style={{color: '#3d84f5', fontWeight: 'bold'}}>Log in</Link>
             </Typography>
         </Box>

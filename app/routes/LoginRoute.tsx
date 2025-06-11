@@ -7,7 +7,7 @@ import Logo from '../assets/logo.svg';
 import GoogleIcon from '../assets/google-icon.svg';
 import { Link } from 'react-router';
 
-const LoginRoute= () => {
+const LoginRoute: React.FC = () => {
     return (
         <Box
             sx={{
@@ -30,13 +30,14 @@ const LoginRoute= () => {
             <Box sx={{width: '100%', maxWidth: '400px'}}>
                 <SketchyTextField
                     fullWidth
-                    placeholder="MahdiHaeri"
+                    placeholder="Email Address"
+                    type="email"
                     variant="outlined"
                     sx={{marginBottom: '1.5rem'}}
                 />
                 <SketchyTextField
                     fullWidth
-                    placeholder="••••••••"
+                    placeholder="Password"
                     type="password"
                     variant="outlined"
                     sx={{marginBottom: '1.5rem'}}
@@ -72,8 +73,8 @@ const LoginRoute= () => {
             </SketchyButton>
 
             <Typography>
-                Don't have an account? 
-                <Link to="/auth/signup" replace={true} style={{color: '#3d84f5', fontWeight: 'bold'}}>Sign up</Link>
+                Don't have an account?{' '}
+                <Link to="/auth/signup" style={{color: '#3d84f5', fontWeight: 'bold'}}>Sign up</Link>
             </Typography>
         </Box>
     );

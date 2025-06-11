@@ -1,9 +1,10 @@
 import { createTheme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 import PaperTexture from './assets/paper-texture-2.jpg';
 
-const theme = createTheme({
+const theme: Theme = createTheme({
   typography: {
-    fontFamily: '"Patrick Hand", cursive',
+    fontFamily: '"Indie Flower", cursive',
   },
   components: {
     MuiCssBaseline: {
@@ -21,21 +22,21 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          fontFamily: '"Patrick Hand", cursive',
+          fontFamily: '"Indie Flower", cursive',
         },
       },
     },
     MuiTextField: {
       styleOverrides: {
         root: {
-          fontFamily: '"Patrick Hand", cursive',
+          fontFamily: '"Indie Flower", cursive',
         },
       },
     },
     MuiTypography: {
       styleOverrides: {
         root: {
-          fontFamily: '"Patrick Hand", cursive',
+          fontFamily: '"Indie Flower", cursive',
         },
       },
     },

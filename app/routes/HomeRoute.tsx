@@ -1,6 +1,13 @@
 import React from 'react';
 import Header from '../components/Header';
 import SketchyFilter from '../components/ui/SketchyFilter';
+import SketchyCard from '../components/ui/SketchyCard';
+
+import drinksImage from '../assets/drinks.png';
+import pizzaImage from '../assets/pizza.png';
+import burgerImage from '../assets/burger.png';
+import foodImage from '../assets/food.png';
+import saladsImage from '../assets/salads.png';
 
 const HomeRoute: React.FC = () => {
     return (
@@ -8,8 +15,15 @@ const HomeRoute: React.FC = () => {
             <SketchyFilter />
             <Header />
             <div className="container mx-auto px-4 py-8">
-                <h1 className="text-3xl font-bold mb-4">Welcome to Kalbas</h1>
-                <p className="text-lg">Your personal task management solution</p>
+                <h2 className="text-2xl font-bold mb-4">Explore Categories</h2>
+
+                <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <SketchyCard image={drinksImage} categoryName="Drinks" />
+                    <SketchyCard image={pizzaImage} categoryName="Pizza" />
+                    <SketchyCard image={burgerImage} categoryName="Burgers" />
+                    <SketchyCard image={foodImage} categoryName="Desserts" />
+                    <SketchyCard image={saladsImage} categoryName="Salads" />
+                </div>
             </div>
         </div>
     );

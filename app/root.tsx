@@ -9,6 +9,8 @@ import {
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
+import Footer from './components/ui/Footer';
+import { useLocation } from 'react-router';
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -27,6 +29,8 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  const hideFooter = location.pathname === '/auth/login' || location.pathname === '/auth/signup';
   return (
     <html lang="en">
       <head>
@@ -41,6 +45,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           {children}
+          {!hideFooter && <Footer />}
         </ThemeProvider>
         <ScrollRestoration />
         <Scripts />

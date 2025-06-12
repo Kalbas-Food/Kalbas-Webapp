@@ -21,6 +21,7 @@ const StyledCardContent = styled(ButtonBase)(({ theme }) => ({
   boxShadow: 'none',
   width: '100%',
   height: '100%',
+  color: theme.palette.text.primary,
   // disable ripple effect, as it's handled by SketchyContainer if ButtonBase is used as a child
   '& .MuiTouchRipple-root': {
     display: 'none',

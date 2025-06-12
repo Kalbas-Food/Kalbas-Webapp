@@ -25,10 +25,10 @@ const StyledSketchyBox = styled(Box)<{ disableActiveTransform?: boolean }>(({ th
     inset: 0,
     zIndex: -1,
     borderRadius: '12px',
-    border: '2px solid black',
-    backgroundColor: 'white',
+    border: `2px solid ${theme.palette.text.primary}`,
+    backgroundColor: theme.palette.background.paper,
     filter: 'url(#sketchy-filter)',
-    boxShadow: '4px 4px 0px black',
+    boxShadow: `4px 4px 0px ${theme.palette.text.primary}`,
     transition: disableActiveTransform ? 'box-shadow 0.1s ease-in-out' : 'transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out',
   },
 
@@ -36,14 +36,14 @@ const StyledSketchyBox = styled(Box)<{ disableActiveTransform?: boolean }>(({ th
   '&:hover': {
     transform: 'translateY(-2px)',
     '&::before': {
-      boxShadow: '6px 6px 0px black',
+      boxShadow: `6px 6px 0px ${theme.palette.text.primary}`,
     },
   },
   '&:active': {
     transform: disableActiveTransform ? 'none' : 'translate(2px, 2px)',
     transition: disableActiveTransform ? 'none' : 'transform 0.1s ease-in-out',
     '&::before': {
-      boxShadow: disableActiveTransform ? '4px 4px 0px black' : '2px 2px 0px black',
+      boxShadow: disableActiveTransform ? `4px 4px 0px ${theme.palette.text.primary}` : `2px 2px 0px ${theme.palette.text.primary}`,
       transition: disableActiveTransform ? 'none' : 'transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out',
     },
   },

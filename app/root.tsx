@@ -6,11 +6,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import theme from './theme';
 import Footer from './components/ui/Footer';
 import { useLocation } from 'react-router';
+import { ThemeModeProvider } from './components/ui/ThemeModeProvider';
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -42,11 +40,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
+        <ThemeModeProvider>
           {children}
           {!hideFooter && <Footer />}
-        </ThemeProvider>
+        </ThemeModeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Avatar, Divider } from '@mui/material';
+import { Box, Typography, Avatar, Divider, useTheme } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import SketchyIconButton from './ui/SketchyIconButton';
 import SketchyPopover from './ui/SketchyPopover';
@@ -19,6 +19,7 @@ import OrderHistoryItem from './ui/OrderHistoryItem';
 import sunnyIcon from '../assets/img/icons/sunny.png';
 import moonIcon from '../assets/img/icons/new-moon.png';
 import SketchyButton from './ui/SketchyButton';
+import { useThemeMode } from './ui/ThemeModeProvider';
 
 const StyledMenuItem = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -30,7 +31,7 @@ const StyledMenuItem = styled(Box)(({ theme }) => ({
   transition: 'background-color 0.2s ease',
 
   '&:hover': {
-    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+    backgroundColor: theme.palette.action.hover,
   },
 }));
 
@@ -45,7 +46,7 @@ const StyledProfileSection = styled(Box)(({ theme }) => ({
   cursor: 'pointer',
 
   '&:hover': {
-    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+    backgroundColor: theme.palette.action.hover,
     '& .profile-link': {
       color: theme.palette.primary.main,
       transform: 'translateX(4px)',
@@ -117,11 +118,13 @@ const mockOrders = [
 ];
 
 const Header: React.FC = () => {
+  const theme = useTheme();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { mode, toggleMode } = useThemeMode();
+  const isDarkMode = mode === 'dark';
 
   const handleProfileClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -159,10 +162,8 @@ const Header: React.FC = () => {
       const currentScrollY = window.scrollY;
       
       if (currentScrollY > lastScrollY) {
-        // Scrolling down
         setIsVisible(false);
       } else {
-        // Scrolling up
         setIsVisible(true);
       }
       
@@ -179,9 +180,9 @@ const Header: React.FC = () => {
         position: 'sticky',
         top: 0,
         zIndex: 1000,
-        backgroundColor: 'white',
-        transition: 'transform 0.3s ease-in-out', // Smooth animation for slide in/out
-        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)', // Apply slide animation
+        backgroundColor: theme.palette.background.paper,
+        transition: 'transform 0.3s ease-in-out',
+        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -189,7 +190,8 @@ const Header: React.FC = () => {
         width: '100%',
         flexWrap: 'wrap',
         gap: { xs: '1rem', md: '1.5rem' },
-
+        color: theme.palette.text.primary,
+        boxShadow: 'none',
         '&::after': {
           content: '""',
           position: 'absolute',
@@ -197,9 +199,9 @@ const Header: React.FC = () => {
           left: 0,
           width: '100%',
           height: '1px',
-          backgroundColor: 'black',
+          backgroundColor: theme.palette.text.primary,
           filter: 'url(#sketchy-filter)',
-          boxShadow: '0px 2px 0px black',
+          boxShadow: `0px 2px 0px ${theme.palette.text.primary}`,
         },
       }}
     >
@@ -219,11 +221,11 @@ const Header: React.FC = () => {
               alt="Location Pin"
               sx={{ width: 24, height: 24 }}
             />
-            <Typography variant="h6" sx={{ fontFamily: '"Indie Flower", cursive', fontWeight: 'bold', lineHeight: 1.2 }}>
+            <Typography variant="h6" sx={{ fontFamily: '"Indie Flower", cursive', fontWeight: 'bold', lineHeight: 1.2, color: 'inherit' }}>
               Shahid Bastami Dormitory
             </Typography>
           </Box>
-          <Typography variant="body2" sx={{ fontFamily: '"Indie Flower", cursive' }}>
+          <Typography variant="body2" sx={{ fontFamily: '"Indie Flower", cursive', color: 'inherit' }}>
             Valiasr, Hafez, Ayatollah Taleghani after Ghafarzadeh, Plaque 396
           </Typography>
         </Box>
@@ -261,7 +263,7 @@ const Header: React.FC = () => {
 
       {/* Drawer for order history */}
       <SketchyDrawer anchor="right" open={drawerOpen} onClose={handleDrawerClose}>
-        <Typography variant="h5" sx={{ fontFamily: 'inherit', fontWeight: 'bold', mb: 3 }}>
+        <Typography variant="h5" sx={{ fontFamily: 'inherit', fontWeight: 'bold', mb: 3, color: 'inherit' }}>
           Order History
         </Typography>
         {mockOrders.map((order, idx) => (
@@ -283,7 +285,7 @@ const Header: React.FC = () => {
             size={50}
           />
           <Box>
-            <Typography variant="h6" sx={{ fontFamily: 'inherit', fontWeight: 'bold' }}>
+            <Typography variant="h6" sx={{ fontFamily: 'inherit', fontWeight: 'bold', color: 'inherit' }}>
               Mahdi Haeri
             </Typography>
             <Typography 
@@ -325,7 +327,7 @@ const Header: React.FC = () => {
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
           <SketchyButton
             variant={isDarkMode ? 'contained' : 'outlined'}
-            onClick={() => setIsDarkMode((prev) => !prev)}
+            onClick={toggleMode}
             sx={{
               width: '100%',
               display: 'flex',

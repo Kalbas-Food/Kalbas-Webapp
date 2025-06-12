@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 
-const SketchyTextField = styled(TextField)({
+const SketchyTextField = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
     position: 'relative',
     borderRadius: '12px',
@@ -15,24 +15,24 @@ const SketchyTextField = styled(TextField)({
       inset: 0,
       zIndex: -1,
       borderRadius: '12px',
-      border: '2px solid black',
-      backgroundColor: 'white',
+      border: `2px solid ${theme.palette.text.primary}`,
+      backgroundColor: theme.palette.background.paper,
       filter: 'url(#sketchy-filter)',
-      boxShadow: '1px 1px 0px 1px rgba(0,0,0,1)',
+      boxShadow: `1px 1px 0px 1px ${theme.palette.text.primary}`,
       transition: 'transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out, border-color 0.1s ease-in-out',
     },
 
     '&:hover:not(.Mui-focused)': {
       '&::before': {
-        boxShadow: '2px 2px 0px 1px rgba(0,0,0,1)',
+        boxShadow: `2px 2px 0px 1px ${theme.palette.text.primary}`,
       },
     },
 
     '&.Mui-focused': {
       '&::before': {
         transform: 'translateY(-2px)',
-        boxShadow: '3px 3px 0px 1px rgba(0,0,0,1)',
-        borderColor: '#3d84f5',
+        boxShadow: `3px 3px 0px 1px ${theme.palette.text.primary}`,
+        borderColor: theme.palette.primary.main,
       },
     },
 
@@ -48,7 +48,9 @@ const SketchyTextField = styled(TextField)({
   },
   '& .MuiInputBase-input': {
     padding: '12px 20px',
+    color: theme.palette.text.primary,
+    backgroundColor: 'transparent',
   },
-});
+}));
 
 export default SketchyTextField; 

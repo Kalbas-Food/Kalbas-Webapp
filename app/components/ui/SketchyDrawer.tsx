@@ -24,11 +24,11 @@ const StyledDrawerPaper = styled('div')(({ theme }) => ({
     borderRadius: '0',
     borderTop: '0px',
     borderBottom: '0px',
-    borderLeft: '1.5px solid black',
+    borderLeft: `1.5px solid ${theme.palette.text.primary}`,
     borderRight: '0px',
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.background.paper,
     filter: 'url(#sketchy-filter)',
-    boxShadow: '0 4px 24px 0 rgba(0,0,0,0.08)',
+    boxShadow: `0 4px 24px 0 ${theme.palette.text.primary}22`,
   },
 }));
 

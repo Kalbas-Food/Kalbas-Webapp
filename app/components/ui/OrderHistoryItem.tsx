@@ -23,8 +23,8 @@ const RestaurantLogo = styled(Box)(({ theme }) => ({
   width: 48,
   height: 48,
   borderRadius: '12px',
-  background: '#fff',
-  border: '1px solid #eee',
+  background: theme.palette.background.paper,
+  border: `1px solid ${theme.palette.divider}`,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -33,8 +33,8 @@ const RestaurantLogo = styled(Box)(({ theme }) => ({
 }));
 
 const ReviewChip = styled(Chip)(({ theme }) => ({
-  background: '#e6fbe6',
-  color: '#1a7f37',
+  background: theme.palette.mode === 'dark' ? theme.palette.success.dark : theme.palette.success.light,
+  color: theme.palette.success.main,
   fontWeight: 500,
   fontSize: 15,
   borderRadius: 8,
@@ -44,8 +44,8 @@ const ReviewChip = styled(Chip)(({ theme }) => ({
 
 const ActionButton = styled(Button)(({ theme }) => ({
   borderRadius: 10,
-  background: '#f7f7f7',
-  color: '#222',
+  background: theme.palette.action.selected,
+  color: theme.palette.text.primary,
   fontWeight: 500,
   fontSize: 15,
   boxShadow: 'none',
@@ -53,7 +53,7 @@ const ActionButton = styled(Button)(({ theme }) => ({
   padding: theme.spacing(1.1, 2.5),
   minWidth: 0,
   '&:hover': {
-    background: '#ececec',
+    background: theme.palette.action.hover,
     boxShadow: 'none',
   },
 }));
@@ -73,7 +73,7 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({ restaurant, date, t
         </RestaurantLogo>
         {/* Info */}
         <Box sx={{ flex: 1, minWidth: 0, mr: 2 }}>
-          <Typography variant="subtitle1" sx={{ fontFamily: 'inherit', fontWeight: 700, mb: 0.5, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{restaurant}</Typography>
+          <Typography variant="subtitle1" sx={{ fontFamily: 'inherit', fontWeight: 700, mb: 0.5, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'inherit' }}>{restaurant}</Typography>
           <Typography variant="body2" sx={{ fontFamily: 'inherit', color: 'text.secondary', fontWeight: 400 }}>{date}</Typography>
         </Box>
       </Row>
@@ -92,7 +92,7 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({ restaurant, date, t
           Reorder
         </ActionButton>
       </Box>
-      <Divider sx={{ my: 2, borderColor: '#eee' }} />
+      <Divider sx={{ my: 2, borderColor: 'divider' }} />
     </>
   );
 };

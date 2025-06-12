@@ -24,10 +24,10 @@ const StyledIconButton = styled(IconButton)(({ theme }) => ({
     inset: 0,
     zIndex: -1,
     borderRadius: '8px',
-    border: '2px solid black',
-    backgroundColor: 'white',
+    border: `2px solid ${theme.palette.text.primary}`,
+    backgroundColor: theme.palette.background.paper,
     filter: 'url(#sketchy-filter)',
-    boxShadow: '4px 4px 0px black',
+    boxShadow: `4px 4px 0px ${theme.palette.text.primary}`,
     transition: 'transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out',
   },
 
@@ -35,13 +35,13 @@ const StyledIconButton = styled(IconButton)(({ theme }) => ({
     backgroundColor: 'transparent',
     boxShadow: 'none',
     '&::before': {
-      boxShadow: '6px 6px 0px black',
+      boxShadow: `6px 6px 0px ${theme.palette.text.primary}`,
     },
   },
   '&:active': {
     transform: 'translate(2px, 2px)',
     '&::before': {
-      boxShadow: '2px 2px 0px black',
+      boxShadow: `2px 2px 0px ${theme.palette.text.primary}`,
     },
   },
 }));

@@ -4,8 +4,8 @@ import { styled } from '@mui/material/styles';
 
 const FooterContainer = styled(Box)(({ theme }) => ({
   width: '100%',
-  background: '#fff',
-  boxShadow: '0 -2px 0px black',
+  background: theme.palette.background.paper,
+  boxShadow: `0 -2px 0px ${theme.palette.text.primary}`,
   padding: theme.spacing(4, 2, 2, 2),
   display: 'flex',
   flexDirection: 'column',
@@ -20,10 +20,10 @@ const FooterContainer = styled(Box)(({ theme }) => ({
     position: 'absolute',
     inset: 0,
     zIndex: -1,
-    borderTop: '1px solid black',
-    background: '#fff',
+    borderTop: `1px solid ${theme.palette.text.primary}`,
+    background: theme.palette.background.paper,
     filter: 'url(#sketchy-filter)',
-    boxShadow: '0 -2px 0px black',
+    boxShadow: `0 -2px 0px ${theme.palette.text.primary}`,
     borderRadius: 0,
   },
 }));

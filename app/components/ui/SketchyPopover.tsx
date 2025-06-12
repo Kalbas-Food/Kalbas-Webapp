@@ -20,10 +20,10 @@ const StyledPopover = styled(Popover)(({ theme }) => ({
       inset: 0,
       zIndex: -1,
       borderRadius: '12px',
-      border: '2px solid black',
-      backgroundColor: 'white',
+      border: `2px solid ${theme.palette.text.primary}`,
+      backgroundColor: theme.palette.background.paper,
       filter: 'url(#sketchy-filter)',
-      boxShadow: '4px 4px 0px black',
+      boxShadow: `4px 4px 0px ${theme.palette.text.primary}`,
     },
   },
 }));

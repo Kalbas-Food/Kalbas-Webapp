@@ -19,6 +19,7 @@ const StyledMenuItem = styled(Box)(({ theme }) => ({
   transition: 'all 0.2s ease',
   marginBottom: theme.spacing(1),
   zIndex: 0,
+  color: theme.palette.text.primary,
 
   '&::before': {
     content: '""',
@@ -26,7 +27,7 @@ const StyledMenuItem = styled(Box)(({ theme }) => ({
     inset: 0,
     borderRadius: '8px',
     backgroundColor: 'transparent',
-    border: '2px solid transparent',
+    border: `2px solid transparent`,
     transition: 'all 0.2s ease',
     zIndex: -1,
   },
@@ -34,17 +35,17 @@ const StyledMenuItem = styled(Box)(({ theme }) => ({
   '&:hover': {
     transform: 'translateY(-1px)',
     '&::before': {
-      backgroundColor: 'rgba(0, 0, 0, 0.04)',
-      border: '2px solid black',
+      backgroundColor: theme.palette.action.hover,
+      border: `2px solid ${theme.palette.text.primary}`,
       filter: 'url(#sketchy-filter)',
-      boxShadow: '2px 2px 0px black',
+      boxShadow: `2px 2px 0px ${theme.palette.text.primary}`,
     },
   },
 
   '&:active': {
     transform: 'translateY(1px)',
     '&::before': {
-      boxShadow: '1px 1px 0px black',
+      boxShadow: `1px 1px 0px ${theme.palette.text.primary}`,
     },
   },
 

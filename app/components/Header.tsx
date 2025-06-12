@@ -14,6 +14,8 @@ import exitIcon from '../assets/img/icons/exit.png';
 import logo from '../assets/logo.svg';
 import userImage from '../assets/img/user/mahdi-haeri.jpg';
 import SketchyTextField from './ui/SketchyTextField';
+import SketchyDrawer from './ui/SketchyDrawer';
+import OrderHistoryItem from './ui/OrderHistoryItem';
 
 const StyledMenuItem = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -48,10 +50,74 @@ const StyledProfileSection = styled(Box)(({ theme }) => ({
   },
 }));
 
+const mockOrders = [
+  {
+    restaurant: 'Pizza Palace',
+    date: '2024-06-01 18:30',
+    total: '$18.50',
+    status: 'Delivered',
+  },
+  {
+    restaurant: 'Burger House',
+    date: '2024-05-28 12:15',
+    total: '$12.00',
+    status: 'Delivered',
+  },
+  {
+    restaurant: 'Salad Bar',
+    date: '2024-05-20 14:00',
+    total: '$9.75',
+    status: 'Pending',
+  },
+  {
+    restaurant: 'Cafe Nafas',
+    date: '2024-05-18 20:10',
+    total: '$7.50',
+    status: 'Delivered',
+  },
+  {
+    restaurant: 'Bomb O Min',
+    date: '2024-05-17 18:26',
+    total: '$15.00',
+    status: 'Delivered',
+  },
+  {
+    restaurant: 'Aref Restaurant',
+    date: '2024-05-16 14:45',
+    total: '$11.25',
+    status: 'Delivered',
+  },
+  {
+    restaurant: 'Valiasr Ice Cream',
+    date: '2024-05-15 15:27',
+    total: '$5.00',
+    status: 'Delivered',
+  },
+  {
+    restaurant: 'Green Bowl',
+    date: '2024-05-12 13:10',
+    total: '$10.80',
+    status: 'Delivered',
+  },
+  {
+    restaurant: 'Pasta Point',
+    date: '2024-05-10 19:00',
+    total: '$13.40',
+    status: 'Delivered',
+  },
+  {
+    restaurant: 'Sushi Express',
+    date: '2024-05-08 21:15',
+    total: '$22.00',
+    status: 'Delivered',
+  },
+];
+
 const Header: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleProfileClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -80,6 +146,9 @@ const Header: React.FC = () => {
     // Handle logout
     handleClose();
   };
+
+  const handleDrawerOpen = () => setDrawerOpen(true);
+  const handleDrawerClose = () => setDrawerOpen(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -168,7 +237,7 @@ const Header: React.FC = () => {
 
       {/* Right section: Orders and Profile */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-        <SketchyIconButton>
+        <SketchyIconButton onClick={handleDrawerOpen}>
           <Box
             component="img"
             src={receiptIcon}
@@ -185,6 +254,16 @@ const Header: React.FC = () => {
           />
         </SketchyIconButton>
       </Box>
+
+      {/* Drawer for order history */}
+      <SketchyDrawer anchor="right" open={drawerOpen} onClose={handleDrawerClose}>
+        <Typography variant="h5" sx={{ fontFamily: 'inherit', fontWeight: 'bold', mb: 3 }}>
+          Order History
+        </Typography>
+        {mockOrders.map((order, idx) => (
+          <OrderHistoryItem key={idx} {...order} />
+        ))}
+      </SketchyDrawer>
 
       {/* Profile Popover */}
       <SketchyPopover

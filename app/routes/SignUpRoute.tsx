@@ -79,7 +79,6 @@ const SignUpRoute: React.FC = () => {
                     fontSize: '1.2rem',
                     marginBottom: '2rem',
                     maxWidth: '400px',
-                    backgroundColor: 'white'
                 }}
             >
                 Sign up with Google

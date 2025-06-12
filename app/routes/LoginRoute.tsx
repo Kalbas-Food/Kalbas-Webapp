@@ -66,7 +66,6 @@ const LoginRoute: React.FC = () => {
                     fontSize: '1.2rem',
                     marginBottom: '2rem',
                     maxWidth: '400px',
-                    backgroundColor: 'white'
                 }}
             >
                 Log in with Google

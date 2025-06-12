@@ -3,6 +3,8 @@ import { Box, Typography, Avatar, Divider } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import SketchyIconButton from './ui/SketchyIconButton';
 import SketchyPopover from './ui/SketchyPopover';
+import SketchyMenuItem from './ui/SketchyMenuItem';
+import SketchyAvatar from './ui/SketchyAvatar';
 import receiptIcon from '../assets/img/icons/receipt.png';
 import profileIcon from '../assets/img/icons/profile.png';
 import pinIcon from '../assets/img/icons/pin.png';
@@ -27,6 +29,25 @@ const StyledMenuItem = styled(Box)(({ theme }) => ({
   },
 }));
 
+const StyledProfileSection = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2),
+  marginBottom: theme.spacing(2),
+  padding: theme.spacing(1),
+  borderRadius: '8px',
+  transition: 'all 0.2s ease',
+  cursor: 'pointer',
+
+  '&:hover': {
+    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+    '& .profile-link': {
+      color: theme.palette.primary.main,
+      transform: 'translateX(4px)',
+    },
+  },
+}));
+
 const Header: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -38,6 +59,26 @@ const Header: React.FC = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleProfileNavigate = () => {
+    // Navigate to profile page
+    handleClose();
+  };
+
+  const handleWalletClick = () => {
+    // Handle wallet click
+    handleClose();
+  };
+
+  const handleInviteClick = () => {
+    // Handle invite click
+    handleClose();
+  };
+
+  const handleLogout = () => {
+    // Handle logout
+    handleClose();
   };
 
   useEffect(() => {
@@ -152,73 +193,51 @@ const Header: React.FC = () => {
         onClose={handleClose}
       >
         {/* Profile Section */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-          <Avatar
+        <StyledProfileSection onClick={handleProfileNavigate}>
+          <SketchyAvatar
             src={userImage}
             alt="Mahdi Haeri"
-            sx={{ 
-              width: 50, 
-              height: 50,
-              border: '2px solid black',
-            }}
+            size={50}
           />
           <Box>
             <Typography variant="h6" sx={{ fontFamily: 'inherit', fontWeight: 'bold' }}>
               Mahdi Haeri
             </Typography>
             <Typography 
+              className="profile-link"
               variant="body2" 
               sx={{ 
                 fontFamily: 'inherit',
                 color: 'text.secondary',
-                cursor: 'pointer',
-                '&:hover': { textDecoration: 'underline' }
+                transition: 'all 0.2s ease',
               }}
-              onClick={() => {/* Navigate to profile */}}
             >
               View Profile
             </Typography>
           </Box>
-        </Box>
+        </StyledProfileSection>
 
         <Divider sx={{ my: 2 }} />
 
         {/* Menu Items */}
-        <StyledMenuItem>
-          <Box
-            component="img"
-            src={walletIcon}
-            alt="Wallet"
-            sx={{ width: 24, height: 24 }}
-          />
-          <Typography variant="body1" sx={{ fontFamily: 'inherit' }}>
-            Internal Wallet
-          </Typography>
-        </StyledMenuItem>
+        <SketchyMenuItem
+          icon={walletIcon}
+          label="Internal Wallet"
+          onClick={handleWalletClick}
+        />
 
-        <StyledMenuItem>
-          <Box
-            component="img"
-            src={inviteIcon}
-            alt="Invite"
-            sx={{ width: 24, height: 24 }}
-          />
-          <Typography variant="body1" sx={{ fontFamily: 'inherit' }}>
-            Invite Friends
-          </Typography>
-        </StyledMenuItem>
+        <SketchyMenuItem
+          icon={inviteIcon}
+          label="Invite Friends"
+          onClick={handleInviteClick}
+        />
 
-        <StyledMenuItem>
-          <Box
-            component="img"
-            src={exitIcon}
-            alt="Logout"
-            sx={{ width: 24, height: 24 }}
-          />
-          <Typography variant="body1" sx={{ fontFamily: 'inherit', color: 'error.main' }}>
-            Logout
-          </Typography>
-        </StyledMenuItem>
+        <SketchyMenuItem
+          icon={exitIcon}
+          label="Logout"
+          onClick={handleLogout}
+          color="error.main"
+        />
       </SketchyPopover>
     </Box>
   );

@@ -16,6 +16,9 @@ import userImage from '../assets/img/user/mahdi-haeri.jpg';
 import SketchyTextField from './ui/SketchyTextField';
 import SketchyDrawer from './ui/SketchyDrawer';
 import OrderHistoryItem from './ui/OrderHistoryItem';
+import sunnyIcon from '../assets/img/icons/sunny.png';
+import moonIcon from '../assets/img/icons/new-moon.png';
+import SketchyButton from './ui/SketchyButton';
 
 const StyledMenuItem = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -118,6 +121,7 @@ const Header: React.FC = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleProfileClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -317,6 +321,32 @@ const Header: React.FC = () => {
           onClick={handleLogout}
           color="error.main"
         />
+
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+          <SketchyButton
+            variant={isDarkMode ? 'contained' : 'outlined'}
+            onClick={() => setIsDarkMode((prev) => !prev)}
+            sx={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
+              px: 2.5,
+              py: 1.2,
+              minWidth: 0,
+            }}
+          >
+            <Box
+              component="img"
+              src={isDarkMode ? sunnyIcon : moonIcon}
+              alt={isDarkMode ? 'Light Mode' : 'Dark Mode'}
+              sx={{ width: 28, height: 28, mr: 1, filter: 'none !important' }}
+            />
+            <Typography sx={{ fontFamily: 'inherit', fontWeight: 600, color: isDarkMode ? '#fff' : '#222', filter: 'none !important' }}>
+              {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+            </Typography>
+          </SketchyButton>
+        </Box>
       </SketchyPopover>
     </Box>
   );

@@ -1,16 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Avatar, Divider } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import SketchyIconButton from './ui/SketchyIconButton';
-import cartIcon from '../assets/img/icons/cart.png';
+import SketchyPopover from './ui/SketchyPopover';
+import receiptIcon from '../assets/img/icons/receipt.png';
 import profileIcon from '../assets/img/icons/profile.png';
 import pinIcon from '../assets/img/icons/pin.png';
+import walletIcon from '../assets/img/icons/wallet.png';
+import inviteIcon from '../assets/img/icons/new-message.png';
+import exitIcon from '../assets/img/icons/exit.png';
 import logo from '../assets/logo.svg';
+import userImage from '../assets/img/user/mahdi-haeri.jpg';
 import SketchyTextField from './ui/SketchyTextField';
+
+const StyledMenuItem = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(2),
+  padding: theme.spacing(1.5),
+  cursor: 'pointer',
+  borderRadius: '8px',
+  transition: 'background-color 0.2s ease',
+
+  '&:hover': {
+    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+  },
+}));
 
 const Header: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleProfileClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -102,12 +130,12 @@ const Header: React.FC = () => {
         <SketchyIconButton>
           <Box
             component="img"
-            src={cartIcon}
+            src={receiptIcon}
             alt="Orders"
             sx={{ width: 30, height: 30 }}
           />
         </SketchyIconButton>
-        <SketchyIconButton>
+        <SketchyIconButton onClick={handleProfileClick}>
           <Box
             component="img"
             src={profileIcon}
@@ -116,6 +144,82 @@ const Header: React.FC = () => {
           />
         </SketchyIconButton>
       </Box>
+
+      {/* Profile Popover */}
+      <SketchyPopover
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+      >
+        {/* Profile Section */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+          <Avatar
+            src={userImage}
+            alt="Mahdi Haeri"
+            sx={{ 
+              width: 50, 
+              height: 50,
+              border: '2px solid black',
+            }}
+          />
+          <Box>
+            <Typography variant="h6" sx={{ fontFamily: 'inherit', fontWeight: 'bold' }}>
+              Mahdi Haeri
+            </Typography>
+            <Typography 
+              variant="body2" 
+              sx={{ 
+                fontFamily: 'inherit',
+                color: 'text.secondary',
+                cursor: 'pointer',
+                '&:hover': { textDecoration: 'underline' }
+              }}
+              onClick={() => {/* Navigate to profile */}}
+            >
+              View Profile
+            </Typography>
+          </Box>
+        </Box>
+
+        <Divider sx={{ my: 2 }} />
+
+        {/* Menu Items */}
+        <StyledMenuItem>
+          <Box
+            component="img"
+            src={walletIcon}
+            alt="Wallet"
+            sx={{ width: 24, height: 24 }}
+          />
+          <Typography variant="body1" sx={{ fontFamily: 'inherit' }}>
+            Internal Wallet
+          </Typography>
+        </StyledMenuItem>
+
+        <StyledMenuItem>
+          <Box
+            component="img"
+            src={inviteIcon}
+            alt="Invite"
+            sx={{ width: 24, height: 24 }}
+          />
+          <Typography variant="body1" sx={{ fontFamily: 'inherit' }}>
+            Invite Friends
+          </Typography>
+        </StyledMenuItem>
+
+        <StyledMenuItem>
+          <Box
+            component="img"
+            src={exitIcon}
+            alt="Logout"
+            sx={{ width: 24, height: 24 }}
+          />
+          <Typography variant="body1" sx={{ fontFamily: 'inherit', color: 'error.main' }}>
+            Logout
+          </Typography>
+        </StyledMenuItem>
+      </SketchyPopover>
     </Box>
   );
 };

@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
-import PaperTexture from './assets/paper-texture-2.jpg';
+import PaperTexture from './assets/img/texture/paper-texture-white.jpg';
 
 const theme: Theme = createTheme({
   typography: {

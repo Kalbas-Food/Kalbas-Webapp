@@ -11,7 +11,7 @@ import pinIcon from '../assets/img/icons/pin.png';
 import walletIcon from '../assets/img/icons/wallet.png';
 import inviteIcon from '../assets/img/icons/new-message.png';
 import exitIcon from '../assets/img/icons/exit.png';
-import logo from '../assets/logo.svg';
+import logo from '../assets/svg/logo.svg';
 import userImage from '../assets/img/user/mahdi-haeri.jpg';
 import SketchyTextField from './ui/SketchyTextField';
 import SketchyDrawer from './ui/SketchyDrawer';

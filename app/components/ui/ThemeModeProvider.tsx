@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo, useState, useEffect } from 'react';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import type { Theme } from '@mui/material/styles';
-import PaperTexture from '../../assets/paper-texture-2.jpg';
+import PaperTexture from '../../assets/img/texture/paper-texture-white.jpg';
 
 interface ThemeModeContextProps {
   mode: 'light' | 'dark';

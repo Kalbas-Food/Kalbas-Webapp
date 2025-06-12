@@ -3,8 +3,8 @@ import {Box, Typography, Divider} from '@mui/material';
 import SketchyButton from '../components/ui/SketchyButton';
 import SketchyTextField from '../components/ui/SketchyTextField';
 import SketchyFilter from '../components/ui/SketchyFilter';
-import Logo from '../assets/logo.svg';
-import GoogleIcon from '../assets/google-icon.svg';
+import Logo from '../assets/svg/logo.svg';
+import GoogleIcon from '../assets/svg/google-icon.svg';
 import { Link } from 'react-router';
 
 const LoginRoute: React.FC = () => {

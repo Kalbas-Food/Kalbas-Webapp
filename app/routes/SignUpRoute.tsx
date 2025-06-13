@@ -3,9 +3,9 @@ import {Box, Typography, Divider} from '@mui/material';
 import SketchyButton from '../components/ui/SketchyButton';
 import SketchyTextField from '../components/ui/SketchyTextField';
 import SketchyFilter from '../components/ui/SketchyFilter';
-import Logo from '../assets/svg/logo.svg';
 import GoogleIcon from '../assets/svg/google-icon.svg';
 import { Link } from 'react-router';
+import SketchyLogo from '../components/ui/SketchyLogo';
 
 const SignUpRoute: React.FC = () => {
     return (
@@ -20,12 +20,7 @@ const SignUpRoute: React.FC = () => {
             }}
         >
             <SketchyFilter/>
-            <Box
-                component="img"
-                src={Logo}
-                alt="Logo"
-                sx={{width: 100, height: 100, marginBottom: '2rem'}}
-            />
+            <SketchyLogo size={100} sx={{ marginBottom: '2rem' }} />
 
             <Box sx={{width: '100%', maxWidth: '400px'}}>
                 <SketchyTextField

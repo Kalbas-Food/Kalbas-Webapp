@@ -5,13 +5,13 @@ import SketchyIconButton from './ui/SketchyIconButton';
 import SketchyPopover from './ui/SketchyPopover';
 import SketchyMenuItem from './ui/SketchyMenuItem';
 import SketchyAvatar from './ui/SketchyAvatar';
+import SketchyLogo from './ui/SketchyLogo';
 import receiptIcon from '../assets/img/icons/receipt.png';
 import profileIcon from '../assets/img/icons/profile.png';
 import pinIcon from '../assets/img/icons/pin.png';
 import walletIcon from '../assets/img/icons/wallet.png';
 import inviteIcon from '../assets/img/icons/new-message.png';
 import exitIcon from '../assets/img/icons/exit.png';
-import logo from '../assets/svg/logo.svg';
 import userImage from '../assets/img/user/mahdi-haeri.jpg';
 import SketchyTextField from './ui/SketchyTextField';
 import SketchyDrawer from './ui/SketchyDrawer';
@@ -207,12 +207,7 @@ const Header: React.FC = () => {
     >
       {/* Left section: Logo and Address */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-        <Box
-          component="img"
-          src={logo}
-          alt="Kalbas Logo"
-          sx={{ width: { xs: 50, md: 65 }, height: { xs: 50, md: 65 } }}
-        />
+        <SketchyLogo size={65} />
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.25rem', direction: 'ltr' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Box

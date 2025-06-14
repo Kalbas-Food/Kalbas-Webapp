@@ -19,6 +19,8 @@ import seafoodImage from '../assets/img/categories/seafood.png';
 // Import restaurant images
 import restaurantBanner from '../assets/img/restaurant-banner.webp';
 import dishLogo from '../assets/img/icons/dish.png';
+import {Outlet, useLocation} from "react-router";
+import Footer from "~/components/ui/Footer";
 
 // Define category data structure
 interface Category {
@@ -142,39 +144,17 @@ const restaurants: Restaurant[] = [
     }
 ];
 
-const HomeRoute: React.FC = () => {
+const DashboardRoute: React.FC = () => {
     return (
         <div>
-            <div className="container mx-auto px-4 py-8">
-                <h2 className="text-2xl font-bold mb-4">Explore Categories</h2>
-                <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 justify-items-center">
-                    {categories.map((category) => (
-                        <SketchyCard
-                            key={category.id}
-                            image={category.image}
-                            categoryName={category.name}
-                        />
-                    ))}
-                </div>
-
-                <h2 className="text-2xl font-bold mb-4 mt-12">Popular Restaurants</h2>
-                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
-                    {restaurants.map((restaurant) => (
-                        <SketchyRestaurantCard
-                            key={restaurant.id}
-                            id={restaurant.id}
-                            name={restaurant.name}
-                            score={restaurant.score}
-                            reviewCount={restaurant.reviewCount}
-                            deliveryCost={restaurant.deliveryCost}
-                            bannerImage={restaurant.bannerImage}
-                            logoImage={restaurant.logoImage}
-                        />
-                    ))}
-                </div>
+            <SketchyFilter />
+            <Header />
+            <div style={{minHeight: '100vh'}}>
+                <Outlet/>
             </div>
+            <Footer/>
         </div>
     );
 };
 
-export default HomeRoute;
+export default DashboardRoute;

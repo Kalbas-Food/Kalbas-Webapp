@@ -19,7 +19,7 @@ interface SketchyRestaurantCardProps {
 
 const SketchyRestaurantCard: React.FC<SketchyRestaurantCardProps> = ({ id, name, score, reviewCount, deliveryCost, bannerImage, logoImage }) => {
   return (
-    <Link to={`/restaurant/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link to={`/restaurants/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <SketchyContainer
         disableActiveTransform={true}
         sx={{

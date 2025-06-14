@@ -6,7 +6,6 @@ import {
     Scripts,
     ScrollRestoration,
 } from "react-router";
-import Footer from './components/ui/Footer';
 import {useLocation} from 'react-router';
 import {ThemeModeProvider} from './components/ui/ThemeModeProvider';
 
@@ -42,7 +41,6 @@ export function Layout({children}: { children: React.ReactNode }) {
         <body>
         <ThemeModeProvider>
             {children}
-            {!hideFooter && <Footer/>}
         </ThemeModeProvider>
         <ScrollRestoration/>
         <Scripts/>

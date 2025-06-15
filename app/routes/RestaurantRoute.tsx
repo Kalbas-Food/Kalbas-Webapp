@@ -37,7 +37,7 @@ const RestaurantInvoice = () => (
 
 const RestaurantInfo = () => (
     <Box sx={{
-        width: {xs: '100%', md: 260},
+        width: {xs: '100%', xl: 260},
         bgcolor: 'background.paper',
         borderRadius: 2,
         boxShadow: 2,
@@ -46,8 +46,8 @@ const RestaurantInfo = () => (
         minHeight: 200,
         display: 'flex',
         flexDirection: 'column',
-        alignItems: {xs: 'center', md: 'flex-end'},
-        position: {md: 'sticky'},
+        alignItems: {xs: 'center', md: 'center'},
+        position: {lg: 'sticky'},
         top: {md: 32},
     }}>
         <Avatar src={restaurant.logo} alt={restaurant.name} sx={{width: 64, height: 64, mb: 2}}/>
@@ -85,13 +85,15 @@ const RestaurantRoute: React.FC = () => {
                         position: 'relative',
                     }}
                 >
-                    {/* Left: Invoice (desktop), bottom on mobile if shown */}
+                    {/* start: Restaurant Info (desktop), top on mobile */}
                     <Box sx={{
                         display: {xs: 'none', md: 'flex'},
                         flex: 1,
+                        flexDirection: 'column',
+                        alignItems: 'center',
                         order: {xs: 3, md: 1},
                     }}>
-                        <RestaurantInvoice/>
+                        <RestaurantInfo/>
                     </Box>
 
                     {/* Center: Food Cards */}
@@ -110,7 +112,6 @@ const RestaurantRoute: React.FC = () => {
                                 <Grid
                                     key={foodItem.id}
                                     size={{xs: 12, sm: 6, md: 12, lg: 6}}
-                                    bgcolor={'red'}
                                     sx={{display: 'flex'}}
                                 >
                                     <Box sx={{
@@ -132,15 +133,13 @@ const RestaurantRoute: React.FC = () => {
                         </Grid>
                     </Box>
 
-                    {/* Right: Restaurant Info (desktop), top on mobile */}
+                    {/* end: Invoice (desktop), bottom on mobile if shown */}
                     <Box sx={{
                         display: {xs: 'none', md: 'flex'},
                         flex: 1,
-                        flexDirection: 'column',
-                        alignItems: 'flex-end',
                         order: {xs: 1, md: 3},
                     }}>
-                        <RestaurantInfo/>
+                        <RestaurantInvoice/>
                     </Box>
                 </Box>
             </Container>

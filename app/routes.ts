@@ -5,7 +5,8 @@ export default [
     // index("routes/DashboardRoute.tsx"),
     route("/", "routes/DashboardRoute.tsx", [
         index("routes/HomeRoute.tsx"),
-        route("restaurants/:restaurantId", "routes/RestaurantRoute.tsx")
+        route("restaurants/:restaurantId", "routes/RestaurantRoute.tsx"),
+        route("account", "routes/AccountRoute.tsx"),
     ]),
     route("auth/login", "routes/LoginRoute.tsx"),
     route("auth/signup", "routes/SignUpRoute.tsx"),

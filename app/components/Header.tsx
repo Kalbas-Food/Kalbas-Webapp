@@ -20,6 +20,7 @@ import sunnyIcon from '../assets/img/icons/sunny.png';
 import moonIcon from '../assets/img/icons/new-moon.png';
 import SketchyButton from './ui/SketchyButton';
 import { useThemeMode } from './ui/ThemeModeProvider';
+import { useNavigate } from 'react-router';
 
 const StyledMenuItem = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -125,6 +126,7 @@ const Header: React.FC = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { mode, toggleMode } = useThemeMode();
   const isDarkMode = mode === 'dark';
+  const navigate = useNavigate();
 
   const handleProfileClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -135,8 +137,8 @@ const Header: React.FC = () => {
   };
 
   const handleProfileNavigate = () => {
-    // Navigate to profile page
     handleClose();
+    navigate('/account');
   };
 
   const handleWalletClick = () => {

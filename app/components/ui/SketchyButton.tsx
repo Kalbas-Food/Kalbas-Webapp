@@ -44,6 +44,22 @@ const SketchyButton = styled(Button)(({ theme, variant }) => ({
             boxShadow: `1px 1px 0px 1px ${theme.palette.text.primary}`,
         },
     },
+
+    // Disabled style for contained variant
+    '&.Mui-disabled': {
+        color: variant === 'contained' ? theme.palette.action.disabled : theme.palette.text.disabled,
+        cursor: 'not-allowed',
+        pointerEvents: 'auto',
+        boxShadow: 'none',
+        border: 'none',
+        backgroundColor: 'transparent',
+        opacity: 1,
+        '&::before': {
+            backgroundColor: variant === 'contained' ? theme.palette.action.disabledBackground : theme.palette.background.paper,
+            borderColor: theme.palette.action.disabled,
+            boxShadow: 'none',
+        },
+    },
 }));
 
 export default SketchyButton; 

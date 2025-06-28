@@ -4,6 +4,7 @@ import SketchyAvatar from '../components/ui/SketchyAvatar';
 import SketchyTextField from '../components/ui/SketchyTextField';
 import SketchyButton from '../components/ui/SketchyButton';
 import { styled } from '@mui/material/styles';
+import BoxImage from '../assets/img/icons/box.png';
 
 // Mock user data for demo
 const mockUser = {
@@ -33,6 +34,33 @@ const StyledTextField = styled(SketchyTextField)({
     marginTop: 0,
   },
 });
+
+const EmptyState = ({ title, description, actionLabel, onAction }: {
+  title: string;
+  description: string;
+  actionLabel?: string;
+  onAction?: () => void;
+}) => (
+  <Box className="flex flex-col items-center justify-center py-12 px-4 bg-transparent">
+    <img
+      src={BoxImage}
+      alt="Empty state"
+      className="w-32 h-32 mb-4 drop-shadow-md"
+      style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.08))' }}
+    />
+    <Typography variant="h6" className="mb-1 font-semibold text-gray-700 text-center">
+      {title}
+    </Typography>
+    <Typography variant="body2" className="mb-4 text-gray-500 text-center" style={{ maxWidth: 320 }}>
+      {description}
+    </Typography>
+    {actionLabel && onAction && (
+      <SketchyButton variant="outlined" onClick={onAction}>
+        {actionLabel}
+      </SketchyButton>
+    )}
+  </Box>
+);
 
 function AccountRoute() {
   const [tab, setTab] = useState(0);
@@ -74,6 +102,10 @@ function AccountRoute() {
 
   function handleLogout() {
     // TODO: Implement logout
+  }
+
+  function handleBrowseMenu() {
+    // TODO: Implement navigation to menu
   }
 
   return (
@@ -145,24 +177,22 @@ function AccountRoute() {
       </Tabs>
       <Box>
         {tab === 0 && (
-          <Box className="flex flex-col items-center py-10 bg-transparent">
-            <img src="/assets/img/empty-box.png" alt="No orders" className="w-32 h-32 mb-4" />
-            <Typography variant="h6" className="mb-2">No orders yet</Typography>
-            <Typography variant="body2" className="mb-4">Browse our menu and place your first order today!</Typography>
-            <SketchyButton variant="outlined">Browse Menu</SketchyButton>
-          </Box>
+          <EmptyState
+            title="No orders yet"
+            description="You haven't placed any orders yet. Browse our menu and place your first order today!"
+          />
         )}
         {tab === 1 && (
-          <Box className="flex flex-col items-center py-10 bg-transparent">
-            <Typography variant="h6" className="mb-2">No transactions yet</Typography>
-            <Typography variant="body2">Your transactions will appear here.</Typography>
-          </Box>
+          <EmptyState
+            title="No transactions yet"
+            description="You have no transactions yet. Your transactions will appear here after your first order."
+          />
         )}
         {tab === 2 && (
-          <Box className="flex flex-col items-center py-10 bg-transparent">
-            <Typography variant="h6" className="mb-2">No discounts yet</Typography>
-            <Typography variant="body2">Your discount codes will appear here.</Typography>
-          </Box>
+          <EmptyState
+            title="No discounts yet"
+            description="You don't have any discount codes yet. Check back here after you receive a discount!"
+          />
         )}
       </Box>
       <Box className="flex justify-start mt-10">

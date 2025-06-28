@@ -209,7 +209,16 @@ const Header: React.FC = () => {
     >
       {/* Left section: Logo and Address */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-        <SketchyLogo size={65} />
+        <Box
+          onClick={() => navigate('/')}
+          sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+          aria-label="Go to home page"
+          tabIndex={0}
+          role="button"
+          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate('/'); }}
+        >
+          <SketchyLogo size={65} />
+        </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.25rem', direction: 'ltr' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Box

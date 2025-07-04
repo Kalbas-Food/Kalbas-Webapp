@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography, Card, InputBase, useTheme } from '@mui/material';
 import SketchyButton from '../components/ui/SketchyButton';
 import { styled } from '@mui/material/styles';
-import GiftImage from '../assets/img/icons/gift/gift-1.png';
+import GiftImage from '../assets/img/icons/gift/gift-4.png';
 import SketchySnackBar from '../components/ui/SketchySnackBar';
 
 const MOCK_INVITE_LINK = 'https://kalbas.app/invite/abc123';

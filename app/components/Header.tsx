@@ -147,8 +147,8 @@ const Header: React.FC = () => {
   };
 
   const handleInviteClick = () => {
-    // Handle invite click
     handleClose();
+    navigate('/invite-friends');
   };
 
   const handleLogout = () => {

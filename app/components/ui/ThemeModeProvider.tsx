@@ -33,7 +33,7 @@ const getDesignTokens = (mode: 'light' | 'dark'): Theme =>
           }
         : {
             background: {
-              default: `url(${PaperTexture})`,
+              default: '#f8f8f8',
               paper: '#fff',
             },
             text: {

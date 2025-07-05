@@ -21,6 +21,7 @@ import moonIcon from '../assets/img/icons/new-moon.png';
 import SketchyButton from './ui/SketchyButton';
 import { useThemeMode } from './ui/ThemeModeProvider';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../hooks/useAuth';
 
 const StyledMenuItem = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -127,6 +128,7 @@ const Header: React.FC = () => {
   const { mode, toggleMode } = useThemeMode();
   const isDarkMode = mode === 'dark';
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleProfileClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -151,9 +153,10 @@ const Header: React.FC = () => {
     navigate('/invite-friends');
   };
 
-  const handleLogout = () => {
-    // Handle logout
+  const handleLogout = async () => {
     handleClose();
+    await logout();
+    navigate('/auth/login');
   };
 
   const handleDrawerOpen = () => setDrawerOpen(true);

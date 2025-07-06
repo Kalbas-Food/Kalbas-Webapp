@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Box, Typography, IconButton} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import SketchyContainer from './SketchyContainer';
@@ -27,6 +27,16 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
     const [amount, setAmount] = useState(20000);
     const [isEditing, setIsEditing] = useState(false);
     const amountInputRef = React.useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (open) {
+            const originalOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = originalOverflow;
+            };
+        }
+    }, [open]);
 
     function handlePresetClick(val: number) {
         setAmount(val);

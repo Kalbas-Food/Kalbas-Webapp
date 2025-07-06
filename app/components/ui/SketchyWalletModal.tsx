@@ -77,12 +77,15 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
             >
                 <SketchyContainer
                     disableActiveTransform
-                    className="relative w-full max-w-lg px-8 py-12 flex flex-col items-center gap-8 shadow-xl"
+                    className="relative w-full flex flex-col items-center gap-8 shadow-xl"
                     sx={{
                         background: theme.palette.background.paper,
                         borderRadius: 12,
-                        minWidth: 350,
-                        boxShadow: '0 8px 32px 0 rgba(0,0,0,0.18)'
+                        minWidth: { xs: '90vw', sm: 350 },
+                        maxWidth: { xs: '95vw', sm: 480 },
+                        px: { xs: 2, sm: 8 },
+                        py: { xs: 4, sm: 12 },
+                        boxShadow: '0 8px 32px 0 rgba(0,0,0,0.18)',
                     }}
                     onClick={e => {
                         e.stopPropagation();
@@ -94,10 +97,10 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                         aria-label="Close"
                         sx={{
                             position: 'absolute',
-                            width: 48,
-                            height: 48,
-                            top: 16,
-                            right: 16,
+                            width: 40,
+                            height: 40,
+                            top: 12,
+                            right: 12,
                             color: theme.palette.text.primary,
                             background: 'transparent',
                             boxShadow: 'none',
@@ -106,30 +109,43 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                             },
                         }}
                     >
-                        <span style={{fontSize: 48, fontWeight: 'bold', color: 'inherit', lineHeight: 1}}>&times;</span>
+                        <span style={{fontSize: 32, fontWeight: 'bold', color: 'inherit', lineHeight: 1}}>&times;</span>
                     </IconButton>
 
                     <Box className="w-full flex flex-col items-center gap-2 mb-2">
                         <Typography variant="h4" className="font-extrabold text-center"
-                                    sx={{fontFamily: 'inherit', fontWeight: 800, fontSize: 32}}>
+                                    sx={{fontFamily: 'inherit', fontWeight: 800, fontSize: { xs: 22, sm: 32 }}}>
                             Increase Credit
                         </Typography>
                         <Typography variant="body1" className="text-gray-500 text-center"
-                                    sx={{fontFamily: 'inherit', fontWeight: 500, fontSize: 20}}>
+                                    sx={{fontFamily: 'inherit', fontWeight: 500, fontSize: { xs: 15, sm: 20 }}}>
                             Current Balance: <span className="font-bold">{toEnglishNumber(currentBalance)}</span> Toman
                         </Typography>
                     </Box>
-                    <Box className="flex flex-row gap-6 mb-2 w-full justify-center">
+                    {/* Responsive preset buttons: stack on xs, row on sm+ */}
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: { xs: 'column', sm: 'row' },
+                            gap: { xs: 2, sm: 3 },
+                            mb: 2,
+                            width: '100%',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                    >
                         {[10000, 20000, 50000].map((opt) => (
                             <SketchyButton
                                 key={opt}
                                 variant={amount === opt ? 'contained' : 'outlined'}
                                 onClick={() => handlePresetClick(opt)}
-                                className="w-32 h-14 text-lg flex items-center justify-center"
+                                className="text-lg flex items-center justify-center"
                                 sx={{
                                     borderRadius: 14,
                                     fontWeight: 700,
-                                    fontSize: 20,
+                                    fontSize: { xs: 15, sm: 20 },
+                                    width: { xs: '100%', sm: 128 },
+                                    height: { xs: 40, sm: 56 },
                                     background: theme.palette.background.paper,
                                     color: theme.palette.text.primary,
                                     boxShadow: 'none',
@@ -147,12 +163,12 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                             </SketchyButton>
                         ))}
                     </Box>
-                    <Box className="flex items-center justify-center gap-10 w-full mt-2 mb-2">
-                        <SketchyIconButton onClick={handleDecrement} aria-label="Decrease" className="w-12 h-12"
-                                           sx={{borderRadius: 10, fontSize: 32}}>
-                            <span className="text-pink-500 text-3xl font-bold">-</span>
+                    <Box className="flex items-center justify-center gap-4 sm:gap-10 w-full mt-2 mb-2">
+                        <SketchyIconButton onClick={handleDecrement} aria-label="Decrease"
+                                           sx={{borderRadius: 10, fontSize: { xs: 22, sm: 32 }, width: { xs: 40, sm: 48 }, height: { xs: 40, sm: 48 }}}>
+                            <span className="text-pink-500 text-2xl sm:text-3xl font-bold">-</span>
                         </SketchyIconButton>
-                        <Box className="flex flex-col items-center min-w-[120px]">
+                        <Box className="flex flex-col items-center min-w-[80px] sm:min-w-[120px]">
                             {isEditing ? (
                                 <input
                                     ref={amountInputRef}
@@ -164,21 +180,22 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                                     pattern="[0-9]*"
                                     style={{
                                         textAlign: 'center',
-                                        fontSize: 36,
+                                        fontSize: 28,
                                         fontWeight: 800,
-                                        width: 140,
+                                        width: 90,
                                         border: 'none',
                                         outline: 'none',
                                         background: 'transparent',
                                         letterSpacing: 2,
+                                        maxWidth: '100%',
                                     }}
                                     type="text"
                                 />
                             ) : (
                                 <Typography
                                     variant="h2"
-                                    className="font-extrabold tracking-widest text-4xl mb-1 cursor-pointer"
-                                    sx={{ fontSize: 36, fontWeight: 800 }}
+                                    className="font-extrabold tracking-widest mb-1 cursor-pointer"
+                                    sx={{ fontSize: { xs: 24, sm: 36 }, fontWeight: 800 }}
                                     onClick={handleAmountDisplayClick}
                                     tabIndex={0}
                                     onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleAmountDisplayClick(); }}
@@ -186,13 +203,13 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                                     {toEnglishNumber(amount)}
                                 </Typography>
                             )}
-                            <Typography variant="body2" className="text-gray-500 mt-1 text-lg" sx={{fontWeight: 500}}>
+                            <Typography variant="body2" className="text-gray-500 mt-1 text-lg" sx={{fontWeight: 500, fontSize: { xs: 12, sm: 16 }}}>
                                 {amount === 10000 ? 'ten thousand toman' : amount === 20000 ? 'twenty thousand toman' : amount === 50000 ? 'fifty thousand toman' : ''}
                             </Typography>
                         </Box>
-                        <SketchyIconButton onClick={handleIncrement} aria-label="Increase" className="w-12 h-12"
-                                           sx={{borderRadius: 10, fontSize: 32}}>
-                            <span className="text-pink-500 text-3xl font-bold">+</span>
+                        <SketchyIconButton onClick={handleIncrement} aria-label="Increase"
+                                           sx={{borderRadius: 10, fontSize: { xs: 22, sm: 32 }, width: { xs: 40, sm: 48 }, height: { xs: 40, sm: 48 }}}>
+                            <span className="text-pink-500 text-2xl sm:text-3xl font-bold">+</span>
                         </SketchyIconButton>
                     </Box>
                     <SketchyButton
@@ -203,9 +220,10 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                             border: 'none',
                             boxShadow: 'none',
                             borderRadius: 14,
-                            fontSize: 26,
+                            fontSize: { xs: 18, sm: 26 },
                             fontWeight: 800,
                             letterSpacing: 0.5,
+                            background: theme.palette.primary.main
                         }}
                     >
                         PAY

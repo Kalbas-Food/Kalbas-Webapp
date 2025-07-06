@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Box, Typography, IconButton} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import SketchyContainer from './SketchyContainer';
 import SketchyButton from './SketchyButton';
 import SketchyIconButton from './SketchyIconButton';
@@ -22,6 +23,7 @@ function toEnglishNumber(num: number | string) {
 }
 
 const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, currentBalance = 0}) => {
+    const theme = useTheme();
     const [amount, setAmount] = useState(20000);
     const [isEditing, setIsEditing] = useState(false);
     const amountInputRef = React.useRef<HTMLInputElement>(null);
@@ -77,7 +79,7 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                     disableActiveTransform
                     className="relative w-full max-w-lg px-8 py-12 flex flex-col items-center gap-8 shadow-xl"
                     sx={{
-                        background: 'background.paper',
+                        background: theme.palette.background.paper,
                         borderRadius: 12,
                         minWidth: 350,
                         boxShadow: '0 8px 32px 0 rgba(0,0,0,0.18)'
@@ -96,11 +98,11 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                             height: 48,
                             top: 16,
                             right: 16,
-                            color: 'text.primary',
+                            color: theme.palette.text.primary,
                             background: 'transparent',
                             boxShadow: 'none',
                             '&:hover': {
-                                background: 'rgba(255, 255, 255, 0.1)',
+                                background: theme.palette.action.hover,
                             },
                         }}
                     >
@@ -128,11 +130,15 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                                     borderRadius: 14,
                                     fontWeight: 700,
                                     fontSize: 20,
-                                    background: amount === opt ? '#f4f4f4' : '#f4f4f4',
-                                    color: 'text.primary',
+                                    background: theme.palette.background.paper,
+                                    color: theme.palette.text.primary,
                                     boxShadow: 'none',
                                     border: 'none',
-                                    transition: 'all 0.15s'
+                                    transition: 'all 0.15s',
+                                    ...(amount === opt && {
+                                        background: theme.palette.action.selected,
+                                        color: theme.palette.getContrastText(theme.palette.primary.main),
+                                    })
                                 }}
                             >
                                 {opt === 10000 && '10K TOMAN'}
@@ -193,13 +199,13 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                         variant="contained"
                         className="w-full mt-4 py-4 text-2xl font-bold"
                         sx={{
-                            color: '#fff',
+                            color: theme.palette.getContrastText(theme.palette.primary.main),
                             border: 'none',
                             boxShadow: 'none',
                             borderRadius: 14,
                             fontSize: 26,
                             fontWeight: 800,
-                            letterSpacing: 0.5
+                            letterSpacing: 0.5,
                         }}
                     >
                         PAY

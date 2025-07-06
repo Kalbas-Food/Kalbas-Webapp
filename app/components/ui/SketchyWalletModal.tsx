@@ -23,6 +23,8 @@ function toEnglishNumber(num: number | string) {
 
 const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, currentBalance = 0}) => {
     const [amount, setAmount] = useState(20000);
+    const [isEditing, setIsEditing] = useState(false);
+    const amountInputRef = React.useRef<HTMLInputElement>(null);
 
     function handlePresetClick(val: number) {
         setAmount(val);
@@ -34,6 +36,28 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
 
     function handleDecrement() {
         setAmount((prev) => (prev > 1000 ? prev - 1000 : 1000));
+    }
+
+    function handleAmountInput(e: React.ChangeEvent<HTMLInputElement>) {
+        let val = e.target.value.replace(/[^0-9]/g, '');
+        let num = Number(val);
+        if (isNaN(num)) num = 0;
+        setAmount(num);
+    }
+
+    function handleAmountDisplayClick() {
+        setIsEditing(true);
+        setTimeout(() => amountInputRef.current?.focus(), 0);
+    }
+
+    function handleAmountInputKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+        if (e.key === 'Enter') {
+            setIsEditing(false);
+        }
+    }
+
+    function handleAmountInputBlur() {
+        setIsEditing(false);
     }
 
     if (!open) return null;
@@ -123,10 +147,39 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                             <span className="text-pink-500 text-3xl font-bold">-</span>
                         </SketchyIconButton>
                         <Box className="flex flex-col items-center min-w-[120px]">
-                            <Typography variant="h2" className="font-extrabold tracking-widest text-4xl mb-1"
-                                        sx={{fontSize: 36, fontWeight: 800}}>
-                                {toEnglishNumber(amount)}
-                            </Typography>
+                            {isEditing ? (
+                                <input
+                                    ref={amountInputRef}
+                                    value={amount}
+                                    onChange={handleAmountInput}
+                                    onBlur={handleAmountInputBlur}
+                                    onKeyDown={handleAmountInputKeyDown}
+                                    inputMode="numeric"
+                                    pattern="[0-9]*"
+                                    style={{
+                                        textAlign: 'center',
+                                        fontSize: 36,
+                                        fontWeight: 800,
+                                        width: 140,
+                                        border: 'none',
+                                        outline: 'none',
+                                        background: 'transparent',
+                                        letterSpacing: 2,
+                                    }}
+                                    type="text"
+                                />
+                            ) : (
+                                <Typography
+                                    variant="h2"
+                                    className="font-extrabold tracking-widest text-4xl mb-1 cursor-pointer"
+                                    sx={{ fontSize: 36, fontWeight: 800 }}
+                                    onClick={handleAmountDisplayClick}
+                                    tabIndex={0}
+                                    onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleAmountDisplayClick(); }}
+                                >
+                                    {toEnglishNumber(amount)}
+                                </Typography>
+                            )}
                             <Typography variant="body2" className="text-gray-500 mt-1 text-lg" sx={{fontWeight: 500}}>
                                 {amount === 10000 ? 'ten thousand toman' : amount === 20000 ? 'twenty thousand toman' : amount === 50000 ? 'fifty thousand toman' : ''}
                             </Typography>

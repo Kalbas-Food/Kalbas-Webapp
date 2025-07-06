@@ -22,6 +22,7 @@ import SketchyButton from './ui/SketchyButton';
 import { useThemeMode } from './ui/ThemeModeProvider';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../hooks/useAuth';
+import SketchyWalletModal from './ui/SketchyWalletModal';
 
 const StyledMenuItem = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -129,6 +130,7 @@ const Header: React.FC = () => {
   const isDarkMode = mode === 'dark';
   const navigate = useNavigate();
   const { logout } = useAuth();
+  const [walletModalOpen, setWalletModalOpen] = useState(false);
 
   const handleProfileClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -144,7 +146,7 @@ const Header: React.FC = () => {
   };
 
   const handleWalletClick = () => {
-    // Handle wallet click
+    setWalletModalOpen(true);
     handleClose();
   };
 
@@ -359,6 +361,12 @@ const Header: React.FC = () => {
           </SketchyButton>
         </Box>
       </SketchyPopover>
+
+      <SketchyWalletModal
+        open={walletModalOpen}
+        onClose={() => setWalletModalOpen(false)}
+        currentBalance={120000}
+      />
     </Box>
   );
 };

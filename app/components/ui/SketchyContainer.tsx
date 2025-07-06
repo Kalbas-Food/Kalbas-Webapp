@@ -34,7 +34,7 @@ const StyledSketchyBox = styled(Box)<{ disableActiveTransform?: boolean }>(({ th
 
   // Common hover/active effects
   '&:hover': {
-    transform: 'translateY(-2px)',
+    transform: disableActiveTransform ? 'none' : 'translateY(-2px)',
     '&::before': {
       boxShadow: `6px 6px 0px ${theme.palette.text.primary}`,
     },

@@ -83,8 +83,8 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                         borderRadius: 12,
                         minWidth: { xs: '90vw', sm: 350 },
                         maxWidth: { xs: '95vw', sm: 480 },
-                        px: { xs: 2, sm: 8 },
-                        py: { xs: 4, sm: 12 },
+                        px: { xs: 2, sm: 4 },
+                        py: { xs: 4, sm: 6 },
                         boxShadow: '0 8px 32px 0 rgba(0,0,0,0.18)',
                     }}
                     onClick={e => {
@@ -109,7 +109,7 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                             },
                         }}
                     >
-                        <span style={{fontSize: 32, fontWeight: 'bold', color: 'inherit', lineHeight: 1}}>&times;</span>
+                        <span style={{fontSize: 38, fontWeight: 'bold', color: 'inherit', lineHeight: 1}}>&times;</span>
                     </IconButton>
 
                     <Box className="w-full flex flex-col items-center gap-2 mb-2">
@@ -143,8 +143,8 @@ const SketchyWalletModal: React.FC<SketchyWalletModalProps> = ({open, onClose, c
                                 sx={{
                                     borderRadius: 14,
                                     fontWeight: 700,
-                                    fontSize: { xs: 15, sm: 20 },
-                                    width: { xs: '100%', sm: 128 },
+                                    fontSize: { xs: 15, sm: 18},
+                                    width: { xs: '100%', sm: 200},
                                     height: { xs: 40, sm: 56 },
                                     background: theme.palette.background.paper,
                                     color: theme.palette.text.primary,

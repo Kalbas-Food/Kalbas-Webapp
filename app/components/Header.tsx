@@ -23,6 +23,10 @@ import { useThemeMode } from './ui/ThemeModeProvider';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../hooks/useAuth';
 import SketchyWalletModal from './ui/SketchyWalletModal';
+import SketchyContainer from './ui/SketchyContainer';
+import { IconButton } from '@mui/material';
+import editIcon from '../assets/img/icons/edit.png';
+import basketIcon from '../assets/img/icons/basket.png';
 
 const StyledMenuItem = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -120,6 +124,12 @@ const mockOrders = [
   },
 ];
 
+const mockAddresses = [
+  { id: 1, label: 'Home', address: '123 Main St, City, Country' },
+  { id: 2, label: 'Work', address: '456 Office Rd, City, Country' },
+  { id: 3, label: 'Dorm', address: 'Shahid Bastami Dormitory, Valiasr, Hafez, Ayatollah Taleghani after Ghafarzadeh, Plaque 396' },
+];
+
 const Header: React.FC = () => {
   const theme = useTheme();
   const [isVisible, setIsVisible] = useState(true);
@@ -131,6 +141,8 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const [walletModalOpen, setWalletModalOpen] = useState(false);
+  const [addressModalOpen, setAddressModalOpen] = useState(false);
+  const [selectedAddressId, setSelectedAddressId] = useState<number>(mockAddresses[0].id);
 
   const handleProfileClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -225,18 +237,25 @@ const Header: React.FC = () => {
           <SketchyLogo size={65} />
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.25rem', direction: 'ltr' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <Box
+            sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
+            onClick={() => setAddressModalOpen(true)}
+            tabIndex={0}
+            role="button"
+            aria-label="Select address"
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setAddressModalOpen(true); }}
+          >
             <Box
               component="img"
               src={pinIcon}
               alt="Location Pin"
               sx={{ width: 24, height: 24 }}
             />
-            <Typography variant="h6" sx={{ fontFamily: '"Indie Flower", cursive', fontWeight: 'bold', lineHeight: 1.2, color: 'inherit' }}>
+            <Typography variant="h6" sx={{ fontFamily: 'Indie Flower, cursive', fontWeight: 'bold', lineHeight: 1.2, color: 'inherit' }}>
               Shahid Bastami Dormitory
             </Typography>
           </Box>
-          <Typography variant="body2" sx={{ fontFamily: '"Indie Flower", cursive', color: 'inherit' }}>
+          <Typography variant="body2" sx={{ fontFamily: 'Indie Flower, cursive', color: 'inherit' }}>
             Valiasr, Hafez, Ayatollah Taleghani after Ghafarzadeh, Plaque 396
           </Typography>
         </Box>
@@ -361,6 +380,91 @@ const Header: React.FC = () => {
           </SketchyButton>
         </Box>
       </SketchyPopover>
+
+      {/* Address Modal */}
+      {addressModalOpen && (
+        <Box className="fixed inset-0 z-[1200] flex items-center justify-center bg-black/30" onClick={() => setAddressModalOpen(false)} role="presentation" style={{ minHeight: '100vh', minWidth: '100vw' }}>
+          <Box className="flex items-center justify-center w-full h-full" style={{ pointerEvents: 'none' }}>
+            <SketchyContainer
+              disableActiveTransform
+              className="relative w-full flex flex-col items-center gap-6 shadow-xl"
+              sx={{
+                background: theme.palette.background.paper,
+                borderRadius: 12,
+                minWidth: { xs: '90vw', sm: 350 },
+                maxWidth: { xs: '95vw', sm: 420 },
+                px: { xs: 2, sm: 4 },
+                py: { xs: 4, sm: 6 },
+                boxShadow: '0 8px 32px 0 rgba(0,0,0,0.18)',
+              }}
+              onClick={e => { e.stopPropagation(); }}
+              style={{ pointerEvents: 'auto' }}
+            >
+              <IconButton
+                onClick={() => setAddressModalOpen(false)}
+                aria-label="Close"
+                sx={{
+                  position: 'absolute',
+                  width: 40,
+                  height: 40,
+                  top: 12,
+                  right: 12,
+                  color: theme.palette.text.primary,
+                  background: 'transparent',
+                  boxShadow: 'none',
+                  '&:hover': { background: theme.palette.action.hover },
+                }}
+              >
+                <span style={{ fontSize: 32, fontWeight: 'bold', color: 'inherit', lineHeight: 1 }}>&times;</span>
+              </IconButton>
+              <Typography variant="h5" className="font-extrabold text-center" sx={{ fontFamily: 'inherit', fontWeight: 800, fontSize: { xs: 20, sm: 26 } }}>
+                Select Address
+              </Typography>
+              <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {mockAddresses.map(addr => (
+                  <SketchyContainer
+                    key={addr.id}
+                    disableActiveTransform
+                    className="flex items-center justify-between gap-3 px-3 py-3"
+                    sx={{
+                      border: selectedAddressId === addr.id ? `2px solid ${theme.palette.primary.main}` : `2px solid ${theme.palette.text.primary}`,
+                      background: selectedAddressId === addr.id ? theme.palette.action.selected : theme.palette.background.paper,
+                      cursor: 'pointer',
+                      transition: 'border 0.2s, background 0.2s',
+                    }}
+                    onClick={() => setSelectedAddressId(addr.id)}
+                  >
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 700, fontFamily: 'inherit', color: 'text.primary', mb: 0.5 }}>
+                        {addr.label}
+                      </Typography>
+                      <Typography variant="body2" sx={{ color: 'text.secondary', fontFamily: 'inherit', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {addr.address}
+                      </Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', gap: 1 }}>
+                      <IconButton aria-label="Edit address" size="small" sx={{ p: 0, background: 'none', border: 'none', boxShadow: 'none', minWidth: 0 }}>
+                        <Box component="img" src={editIcon} alt="Edit" sx={{ width: 22, height: 22, filter: theme.palette.mode === 'dark' ? 'invert(1)' : 'none' }} />
+                      </IconButton>
+                      <IconButton aria-label="Delete address" size="small" sx={{ p: 0, background: 'none', border: 'none', boxShadow: 'none', minWidth: 0 }}>
+                        <Box component="img" src={basketIcon} alt="Delete" sx={{ width: 22, height: 22, filter: theme.palette.mode === 'dark' ? 'invert(1)' : 'none' }} />
+                      </IconButton>
+                    </Box>
+                  </SketchyContainer>
+                ))}
+              </Box>
+              <SketchyButton
+                variant="outlined"
+                className="w-full mt-2 py-3 text-lg font-bold"
+                sx={{ borderRadius: 10, fontWeight: 700, fontSize: 18, mt: 2 }}
+                onClick={() => { setAddressModalOpen(false); /* navigate('/add-address') in future */ }}
+              >
+                + Add New Address
+              </SketchyButton>
+            </SketchyContainer>
+          </Box>
+        </Box>
+      )}
 
       <SketchyWalletModal
         open={walletModalOpen}

@@ -27,6 +27,7 @@ import SketchyContainer from './ui/SketchyContainer';
 import { IconButton } from '@mui/material';
 import editIcon from '../assets/img/icons/edit.png';
 import basketIcon from '../assets/img/icons/basket.png';
+import Radio from '@mui/material/Radio';
 
 const StyledMenuItem = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -427,13 +428,19 @@ const Header: React.FC = () => {
                     disableActiveTransform
                     className="flex items-center justify-between gap-3 px-3 py-3"
                     sx={{
-                      border: selectedAddressId === addr.id ? `2px solid ${theme.palette.primary.main}` : `2px solid ${theme.palette.text.primary}`,
-                      background: selectedAddressId === addr.id ? theme.palette.action.selected : theme.palette.background.paper,
                       cursor: 'pointer',
                       transition: 'border 0.2s, background 0.2s',
                     }}
                     onClick={() => setSelectedAddressId(addr.id)}
                   >
+                    <Radio
+                      checked={selectedAddressId === addr.id}
+                      onChange={() => setSelectedAddressId(addr.id)}
+                      value={addr.id}
+                      color="primary"
+                      sx={{ mr: 1 }}
+                      inputProps={{ 'aria-label': `Select ${addr.label}` }}
+                    />
                     <Box sx={{ flex: 1, minWidth: 0 }}>
                       <Typography variant="subtitle1" sx={{ fontWeight: 700, fontFamily: 'inherit', color: 'text.primary', mb: 0.5 }}>
                         {addr.label}
@@ -444,10 +451,10 @@ const Header: React.FC = () => {
                     </Box>
                     <Box sx={{ display: 'flex', gap: 1 }}>
                       <IconButton aria-label="Edit address" size="small" sx={{ p: 0, background: 'none', border: 'none', boxShadow: 'none', minWidth: 0 }}>
-                        <Box component="img" src={editIcon} alt="Edit" sx={{ width: 22, height: 22, filter: theme.palette.mode === 'dark' ? 'invert(1)' : 'none' }} />
+                        <Box component="img" src={editIcon} alt="Edit" sx={{ width: 22, height: 22}} />
                       </IconButton>
                       <IconButton aria-label="Delete address" size="small" sx={{ p: 0, background: 'none', border: 'none', boxShadow: 'none', minWidth: 0 }}>
-                        <Box component="img" src={basketIcon} alt="Delete" sx={{ width: 22, height: 22, filter: theme.palette.mode === 'dark' ? 'invert(1)' : 'none' }} />
+                        <Box component="img" src={basketIcon} alt="Delete" sx={{ width: 22, height: 22 }} />
                       </IconButton>
                     </Box>
                   </SketchyContainer>

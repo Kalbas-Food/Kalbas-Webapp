@@ -28,6 +28,7 @@ import { IconButton } from '@mui/material';
 import editIcon from '../assets/img/icons/edit.png';
 import basketIcon from '../assets/img/icons/basket.png';
 import Radio from '@mui/material/Radio';
+import Categories from './Categories';
 
 const StyledMenuItem = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -205,21 +206,15 @@ const Header: React.FC = () => {
   }, [addressModalOpen]);
 
   return (
-    <Box
-      sx={{
-        position: 'sticky',
+      <Box
+        sx={{
+          position: 'sticky',
         top: 0,
         zIndex: 1000,
         backgroundColor: theme.palette.background.paper,
         transition: 'transform 0.3s ease-in-out',
         transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: { xs: '0.5rem 1rem', md: '1rem 2rem' },
         width: '100%',
-        flexWrap: 'wrap',
-        gap: { xs: '1rem', md: '1.5rem' },
         color: theme.palette.text.primary,
         boxShadow: 'none',
         '&::after': {
@@ -235,6 +230,14 @@ const Header: React.FC = () => {
         },
       }}
     >
+      <Box sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: { xs: '0.5rem 1rem', md: '1rem 2rem' },
+        flexWrap: 'wrap',
+        gap: { xs: '1rem', md: '1.5rem' },
+      }}>
       {/* Left section: Logo and Address */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
         <Box
@@ -488,6 +491,8 @@ const Header: React.FC = () => {
         onClose={() => setWalletModalOpen(false)}
         currentBalance={120000}
       />
+      </Box>
+      <Categories />
     </Box>
   );
 };

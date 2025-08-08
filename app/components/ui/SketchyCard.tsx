@@ -7,6 +7,7 @@ interface SketchyCardProps {
   image: string;
   categoryName: string;
   onClick?: () => void;
+  size?: 'small' | 'medium';
 }
 
 const StyledCardContent = styled(ButtonBase)(({ theme }) => ({
@@ -28,17 +29,22 @@ const StyledCardContent = styled(ButtonBase)(({ theme }) => ({
   },
 }));
 
-const SketchyCard: React.FC<SketchyCardProps> = ({ image, categoryName, onClick }) => {
+const SketchyCard: React.FC<SketchyCardProps> = ({ image, categoryName, onClick, size = 'medium' }) => {
+  const isSmall = size === 'small';
+  const containerSize = isSmall ? '100px' : '150px';
+  const imageSize = isSmall ? 50 : 80;
+  const textSize = isSmall ? 'caption' : 'body1';
+
   return (
-    <SketchyContainer component={ButtonBase} disableRipple={true} onClick={onClick} sx={{ width: '150px', height: '150px' }}>
+    <SketchyContainer component={ButtonBase} disableRipple={true} onClick={onClick} sx={{ width: containerSize, height: containerSize }}>
       <StyledCardContent>
         <Box
           component="img"
           src={image}
           alt={categoryName}
-          sx={{ width: 80, height: 80, objectFit: 'contain' }}
+          sx={{ width: imageSize, height: imageSize, objectFit: 'contain' }}
         />
-        <Typography variant="body1" sx={{ fontFamily: 'inherit', fontWeight: 'bold' }}>
+        <Typography variant={textSize} sx={{ fontFamily: 'inherit', fontWeight: 'bold' }}>
           {categoryName}
         </Typography>
       </StyledCardContent>
@@ -46,4 +52,4 @@ const SketchyCard: React.FC<SketchyCardProps> = ({ image, categoryName, onClick 
   );
 };
 
-export default SketchyCard; 
+export default SketchyCard;
